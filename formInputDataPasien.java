@@ -38,7 +38,10 @@ public class formInputDataPasien {
         potonganBpjs = sc.nextInt();
         System.out.println("Harga                       :");
         harga = sc.nextInt();
-
+        //memproses perhitungan pembayaran
+        hargaAkhir = harga - (harga*potonganBpjs/100);
+        System.out.println("--------------------------------------------------");
+        System.out.println("Harga Akhir        :" + hargaAkhir);
         
         
     }
