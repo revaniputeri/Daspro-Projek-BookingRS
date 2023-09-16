@@ -8,10 +8,9 @@ public class formInputDataPasien {
         String noBpjs;
         String namaPasien;
         String KeluhanPasien;
-        String usiaPasien;
-
-        //membuat varible int berupa angka yang memerlukan perhitungan
         
+        //membuat varible int berupa angka yang memerlukan perhitungan
+        int usiaPasien;
         int potonganBpjs;
         int harga;
         int hargaAkhir;
@@ -19,7 +18,7 @@ public class formInputDataPasien {
         System.out.println("Selamat Datang Di Rumah Sakit X - Admin");
         System.out.println("Masukkan Data Pasien");
         System.out.println("");
-        
+
         
         
     }
