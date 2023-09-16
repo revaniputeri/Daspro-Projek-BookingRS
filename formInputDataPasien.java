@@ -36,7 +36,7 @@ public class formInputDataPasien {
         
         System.out.println("Potongan BPJS(%)               :");
         potonganBpjs = sc.nextInt();
-        System.out.println("Harga                       :");
+        System.out.println("Harga           x            :");
         harga = sc.nextInt();
         
         //memproses perhitungan pembayaran
