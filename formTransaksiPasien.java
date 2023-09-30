@@ -6,10 +6,12 @@ public class formTransaksiPasien {
         //membuat variable sting atau karakter
         String noKtp;
         String noBpjs;
-        String namaPasien, nokartu;
+        String namaPasien;
         String KeluhanPasien;
-        char statusbpjs, pembayaran;
+        char statusbpjs;
         String kategoriPasien;
+        String nokartu;
+        char pembayaran;
         
         //membuat varible int berupa angka yang memerlukan perhitungan
         int usiaPasien;
@@ -68,7 +70,7 @@ public class formTransaksiPasien {
         System.out.println("--------------------------------------------------");
         System.out.println("Harga Akhir                 :" + hargaAkhir);
 
-        //pembayaran debit atau tunai
+        //pembayaran debit atau tunai by fauzi
         System.out.println("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
         pembayaran = sc.next().charAt(0);
 
@@ -78,8 +80,10 @@ public class formTransaksiPasien {
             nokartu = sc.nextLine();
             
         } else {
-            System.out.println("Pembayaran uang tunai");
+            System.out.println("Pembayaran menggunakan uang tunai");
         }
-    
+
+
+
     }
 }
