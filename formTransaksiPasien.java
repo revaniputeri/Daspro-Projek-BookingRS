@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class formInputDataPasien {
+public class formTransaksiPasien {
     public static void main (String[]args){
         Scanner sc = new Scanner (System.in);
 
@@ -20,28 +20,28 @@ public class formInputDataPasien {
         System.out.println("");
 
         //membuat inputan data pasien untuk admin
-        System.out.println("No KTP                      :");
+        System.out.print("No KTP                      :");
         noKtp = sc.nextLine();
-        System.out.println("NO BPJS (Jika ada)          :");
+        System.out.print("NO BPJS (Jika ada)          :");
         noBpjs = sc.nextLine();
-        System.out.println("Nama                        :");
+        System.out.print("Nama                        :");
         namaPasien = sc.nextLine();
-        System.out.println("Usia                        :");
+        System.out.print("Usia                        :");
         usiaPasien = sc.nextInt();
         KeluhanPasien = sc.nextLine();
-        System.out.println("Keluhan                     :");
+        System.out.print("Keluhan                     :");
         KeluhanPasien = sc.nextLine();
     
         System.out.println("--------------------------------------------------");
         
-        System.out.println("Potongan BPJS(%)            :");
+        System.out.print("Potongan BPJS(%)            :");
         potonganBpjs = sc.nextInt();
-        System.out.println("Harga                       :");
+        System.out.print("Harga                       :");
         harga = sc.nextInt();
         
         //memproses perhitungan pembayaran
         hargaAkhir = harga - (harga*potonganBpjs/100);
         System.out.println("--------------------------------------------------");
-        System.out.println("Harga Akhir        :" + hargaAkhir);
+        System.out.print("Harga Akhir                   :" + hargaAkhir);
     }
 }
