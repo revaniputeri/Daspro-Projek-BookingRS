@@ -6,19 +6,19 @@ public class formRegistrasiPasien {
         Scanner sc = new Scanner(System.in);
         char status;
 
-        System.out.println("Apakah pasien memiliki karti berobat? (0 = tidak, 1 = ya)");
+        System.out.println("Apakah pasien memiliki kartu berobat? (0 = tidak, 1 = ya)");
         status = sc.next().charAt(0);
 
         if (status == '0') {
-            System.out.println("Silahkan melakukan registrasi di bawah ini :");
+            System.out.println("Silahkan melakukan registrasi dibawah ini :");
             String noKartu = sc.nextLine();
-            System.out.print("No Kartu  : ");
+            System.out.print("No.Kartu  : ");
             noKartu = sc.nextLine();
             System.out.print("Nama      : ");
             String nama = sc.nextLine();
             System.out.print("Alamat    : ");
             String alamat = sc.nextLine();
-            System.out.print("No. Telp    : ");
+            System.out.print("No.Telp   : ");
             String noTelp = sc.nextLine();
             //menyimpan data
             System.out.println("Data berhasil disimpan");
