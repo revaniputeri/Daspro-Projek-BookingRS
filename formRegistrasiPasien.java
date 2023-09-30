@@ -14,6 +14,8 @@ public class formRegistrasiPasien {
             String noKartu = sc.nextLine();
             System.out.print("No.Kartu  : ");
             noKartu = sc.nextLine();
+            System.out.print("NIK       : ");
+            noKartu = sc.nextLine();
             System.out.print("Nama      : ");
             String nama = sc.nextLine();
             System.out.print("Alamat    : ");
