@@ -10,6 +10,8 @@ public class formTransaksiPasien {
         String KeluhanPasien;
         char statusbpjs;
         String kategoriPasien;
+        String nokartu;
+        char pembayaran;
         
         //membuat varible int berupa angka yang memerlukan perhitungan
         int usiaPasien;
@@ -67,5 +69,19 @@ public class formTransaksiPasien {
         hargaAkhir = harga - (harga*potonganBpjs/100);
         System.out.println("--------------------------------------------------");
         System.out.print("Harga Akhir                 :" + hargaAkhir);
+
+        //pembayaran debit atau tunai by fauzi
+        System.out.println("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
+        pembayaran = sc.next().charAt(0);
+
+        if (pembayaran == '1') {
+            nokartu = sc.nextLine();
+            System.out.print("Masukan nomor kartu debit :");
+            nokartu = sc.nextLine();
+            
+        } else {
+            System.out.println("Pembayaran menggunakan uang tunai");
+        }
+
     }
 }
