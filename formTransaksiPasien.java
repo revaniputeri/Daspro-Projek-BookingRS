@@ -8,6 +8,8 @@ public class formTransaksiPasien {
         String noBpjs;
         String namaPasien;
         String KeluhanPasien;
+        char statusbpjs;
+        String kategoriPasien;
         
         //membuat varible int berupa angka yang memerlukan perhitungan
         int usiaPasien;
@@ -22,26 +24,48 @@ public class formTransaksiPasien {
         //membuat inputan data pasien untuk admin
         System.out.print("No KTP                      :");
         noKtp = sc.nextLine();
-        System.out.print("NO BPJS (Jika ada)          :");
-        noBpjs = sc.nextLine();
-        System.out.print("Nama                        :");
-        namaPasien = sc.nextLine();
-        System.out.print("Usia                        :");
-        usiaPasien = sc.nextInt();
-        KeluhanPasien = sc.nextLine();
-        System.out.print("Keluhan                     :");
-        KeluhanPasien = sc.nextLine();
-    
-        System.out.println("--------------------------------------------------");
         
-        System.out.print("Potongan BPJS(%)            :");
-        potonganBpjs = sc.nextInt();
-        System.out.print("Harga                       :");
-        harga = sc.nextInt();
+        //penambahan fitur pasien BPJS 
+        System.out.println("Apakah pasien memiliki kartu BPJS (0 = ya, 1 = tidak)? ");
+        statusbpjs = sc.next().charAt(0);
+
+        if (statusbpjs == '0') {
+            noBpjs = sc.nextLine();
+            System.out.print("Masukkan No.BPJS pasien     : ");
+            noBpjs = sc.nextLine();
+            potonganBpjs = 100;
+        } else {
+            potonganBpjs = 0;
+            namaPasien = sc.nextLine();
+        }
+
+        System.out.print("Nama                        : ");
+        namaPasien = sc.nextLine();
+
+        //usia menggunakan ifelse menentukan biaya konsultasi atau berobat
+        System.out.print("Usia                        : ");
+        usiaPasien = sc.nextInt();
+        if (usiaPasien <= 17) {
+            kategoriPasien = "A-Anak";
+            harga = 5000;
+        } else {
+            kategoriPasien = "D-Dewasa";
+            harga = 10000;
+        }
+
+        KeluhanPasien = sc.nextLine();
+        System.out.print("Keluhan                     : ");
+        KeluhanPasien = sc.nextLine();
+        System.out.println("--------------------------------------------------");
+
+        //potongan BPJS pada puskesmas 100%
+        System.out.println("Potongan BPJS(%)            : " +potonganBpjs);
+        //harga di tentukan sesuai kategori usia pasien
+        System.out.println("Harga                       : " +harga);
         
         //memproses perhitungan pembayaran
         hargaAkhir = harga - (harga*potonganBpjs/100);
         System.out.println("--------------------------------------------------");
-        System.out.print("Harga Akhir                   :" + hargaAkhir);
+        System.out.print("Harga Akhir                 :" + hargaAkhir);
     }
 }
