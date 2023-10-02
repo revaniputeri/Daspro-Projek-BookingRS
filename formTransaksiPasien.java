@@ -109,7 +109,7 @@ public class formTransaksiPasien {
         //memproses perhitungan pembayaran
         hargaAkhir = harga - (harga*potonganBpjs/100);
         System.out.println("--------------------------------------------------");
-        System.out.print("Harga Akhir                 :" + hargaAkhir);
+        System.out.println("Harga Akhir                 :" + hargaAkhir);
 
         //pembayaran debit atau tunai by fauzi
         System.out.println("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
