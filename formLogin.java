@@ -50,7 +50,18 @@ public class formLogin {
                     // Jika input tidak valid
                     System.out.println("Pilihan tidak valid. Silakan pilih menu yang benar.");
                 }
-            } else {
+            }else if (username.equals("admin2") && password.equals("admindua")){
+                int adminChoice;
+                
+                System.out.println("login berhasil.");
+                System.out.println("==========================================================");
+                System.out.println("|    Selamat datang "+username+" di Sistem Reservasi Puskesmas    |" );
+                System.out.println("==========================================================");
+                System.out.println("| 1. Reservasi Baru                                       ");
+                System.out.println("| 2. Lihat History Reservasi                              ");
+                System.out.println("| 3. Keluar                                               ");
+                System.out.println("==========================================================");
+            } else { 
                 // Jika login gagal
                 System.out.println("Login gagal. Username atau password salah.");
             }
@@ -58,8 +69,8 @@ public class formLogin {
             // Keluar dari program
             System.out.println("Terima kasih! Program selesai.");
         } else {
-            // Jika input tidak valid
-            System.out.println("Pilihan tidak valid. Silakan pilih tipe pengguna yang benar.");
+            // Jika input tidak valid        
+        System.out.println("Pilihan tidak valid. Silakan pilih tipe pengguna yang benar.");
         }
     }
 }
