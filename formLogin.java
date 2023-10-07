@@ -54,13 +54,33 @@ public class formLogin {
                 int adminChoice;
                 
                 System.out.println("login berhasil.");
-                System.out.println("==========================================================");
-                System.out.println("|    Selamat datang "+username+" di Sistem Reservasi Puskesmas    |" );
-                System.out.println("==========================================================");
-                System.out.println("| 1. Reservasi Baru                                       ");
-                System.out.println("| 2. Lihat History Reservasi                              ");
-                System.out.println("| 3. Keluar                                               ");
-                System.out.println("==========================================================");
+                System.out.println("=========================================================");
+                System.out.println("|    Selamat datang "+username+" di Sistem Reservasi Puskesmas    |");
+                System.out.println("=========================================================");
+                System.out.println("| 1. Reservasi Baru                                      |");
+                System.out.println("| 2. Lihat History Reservasi                             |");
+                System.out.println("| 3. Keluar                                              |");
+                System.out.println("=========================================================");
+
+                System.out.print("Pilih menu: ");
+                adminChoice = input.nextInt();
+
+                if (adminChoice == 1) {
+                    // Menu Reservasi Baru
+                    System.out.println("Anda memilih menu Reservasi Baru.");
+                    // Tambahkan nested if untuk langkah-langkah reservasi baru
+                } else if (adminChoice == 2) {
+                    // Menu Lihat Jadwal Reservasi
+                    System.out.println("Anda memilih menu Lihat History Reservasi.");
+                    // Tambahkan kode untuk melihat jadwal reservasi
+                } else if (adminChoice == 3) {
+                    // keluar dari akun admin
+                    System.out.println("Anda telah keluar dari akun "+username+".");
+                } else {
+                    //Jika input tidak valid
+                    System.out.println("Pilihan tidak valid. Silakan pilih menu yang benar.");
+                }
+                
             } else { 
                 // Jika login gagal
                 System.out.println("Login gagal. Username atau password salah.");
