@@ -67,32 +67,25 @@ public class formTransaksiPasien {
         System.out.println("| 6. tenaga gizi                        |"); 
         System.out.println("Pilih nomor dokter yang dibutuhkan pasien : ");
         int pemilihan = sc.nextInt();
-        String keluhan;
 
         switch (pemilihan) {
             case 1:
-                keluhan = "Keluhan Dokter Umum";
-                System.out.println("Dokter Umum - Konsultansi " + keluhan);
+                System.out.println("Dokter Umum - Konsultansi " + KeluhanPasien);
                 break;
             case 2:
-                keluhan = "Keluhan Dokter Gigi";
-                System.out.println("Dokter Gigi - Konsultansi " + keluhan);
+                System.out.println("Dokter Gigi - Konsultansi " + KeluhanPasien);
                 break;
             case 3:
-                keluhan = "Keluhan Bidan";
-                System.out.println("Bidan - Konsultansi " + keluhan);
+                System.out.println("Bidan - Konsultansi " + KeluhanPasien);
                 break;
             case 4:
-                keluhan = "Keluhan Perawat";
-                System.out.println("Perawat - Konsultansi " + keluhan);
+                System.out.println("Perawat - Konsultansi " + KeluhanPasien);
                 break;
             case 5:
-                keluhan = "Keluhan Petugas Lab";
-                System.out.println("Petugas Lab - Konsultansi " + keluhan);
+                System.out.println("Petugas Lab - Konsultansi " + KeluhanPasien);
                 break;
             case 6:
-                keluhan = "Keluhan Tenaga Gizi";
-                System.out.println("Tenaga Gizi - Konsultansi " + keluhan);
+                System.out.println("Tenaga Gizi - Konsultansi " + KeluhanPasien);
                 break;
 
             default:
@@ -121,7 +114,7 @@ public class formTransaksiPasien {
             nokartu = sc.nextLine();
             
         } else {
-            System.out.println("Pembayaran menggunakan uang tunai");
+            System.out.println("Pembayaran menggunakan uang tunai - Lunas");
         }
 
     }
