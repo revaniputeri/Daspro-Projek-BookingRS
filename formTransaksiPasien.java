@@ -3,21 +3,12 @@ public class formTransaksiPasien {
     public static void main (String[]args){
         Scanner sc = new Scanner (System.in);
 
-        //membuat variable sting atau karakter
-        String noKtp;
-        String noBpjs;
-        String namaPasien;
-        String KeluhanPasien;
-        char statusbpjs;
-        String kategoriPasien;
-        String nokartu;
-        char pembayaran;
+        //membuat variable string atau karakter
+        String noKtp, noBpjs, namaPasien, KeluhanPasien, kategoriPasien, noKartu;
+        char statusbpjs, pembayaran;
         
         //membuat varible int berupa angka yang memerlukan perhitungan
-        int usiaPasien;
-        int potonganBpjs;
-        int harga;
-        int hargaAkhir;
+        int usiaPasien, potonganBpjs, harga, hargaAkhir;
 
         System.out.println("Selamat Datang Di Rumah Sakit X - Admin");
         System.out.println("Masukkan Data Pasien");
