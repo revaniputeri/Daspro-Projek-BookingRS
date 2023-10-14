@@ -87,6 +87,8 @@ public class formLogin {
                             KeluhanPasien = sc.nextLine();
                             System.out.print("Keluhan                     : ");
                             KeluhanPasien = sc.nextLine();
+                            boolean isDokter = false;
+                            do {
                             System.out.println("==============Daftar Dokter=============");
                             System.out.println("| 1. Dokter Umum                        |");
                             System.out.println("| 2. Dokter Gigi                        |");
@@ -100,27 +102,35 @@ public class formLogin {
                             switch (pemilihan) {
                                 case 1:
                                     System.out.println("Dokter Umum - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 2:
                                     System.out.println("Dokter Gigi - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 3:
                                     System.out.println("Bidan - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 4:
                                     System.out.println("Perawat - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 5:
                                     System.out.println("Petugas Lab - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 6:
                                     System.out.println("Tenaga Gizi - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
 
                                 default:
                                     System.out.println("Inputan tidak valid!");
+                                    isDokter = false;
                                     break;
-                            }
+                                }
+                            } while (!isDokter);
                             System.out.println("--------------------------------------------------");
 
                             // potongan BPJS pada puskesmas 100%
@@ -226,6 +236,8 @@ public class formLogin {
                             KeluhanPasien = sc.nextLine();
                             System.out.print("Keluhan                     : ");
                             KeluhanPasien = sc.nextLine();
+                            boolean isDokter = false;
+                            do {
                             System.out.println("==============Daftar Dokter=============");
                             System.out.println("| 1. Dokter Umum                        |");
                             System.out.println("| 2. Dokter Gigi                        |");
@@ -239,27 +251,35 @@ public class formLogin {
                             switch (pemilihan) {
                                 case 1:
                                     System.out.println("Dokter Umum - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 2:
                                     System.out.println("Dokter Gigi - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 3:
                                     System.out.println("Bidan - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 4:
                                     System.out.println("Perawat - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 5:
                                     System.out.println("Petugas Lab - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
                                 case 6:
                                     System.out.println("Tenaga Gizi - Konsultansi " + KeluhanPasien);
+                                    isDokter = true;
                                     break;
 
                                 default:
                                     System.out.println("Inputan tidak valid!");
+                                    isDokter = false;
                                     break;
-                            }
+                                }
+                            }while (!isDokter);
                             System.out.println("--------------------------------------------------");
 
                             // potongan BPJS pada puskesmas 100%
