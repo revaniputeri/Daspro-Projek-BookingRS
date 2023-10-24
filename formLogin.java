@@ -182,7 +182,7 @@ public class formLogin {
                                 // Menu Lihat Jadwal Reservasi
                                 System.out.println("Anda memilih menu Lihat History Reservasi.");
                                 // Tambahkan kode untuk melihat jadwal reservasi
-                            } else if (adminChoice == 3) {
+                            } else if (adminChoice == 5) {
                                 // Keluar dari akun admin
                                 System.out.println("Anda telah keluar dari akun " +username);
                                 isLoggedin = false;
@@ -204,9 +204,9 @@ public class formLogin {
                             System.out.println("==========================================================");
                             System.out.println("| 1. Reservasi Baru                                       |");
                             System.out.println("| 2. Lihat History Reservasi                              |");
-                            System.out.println("| 2. Sewa Kamar                                           |");
-                            System.out.println("| 2. Lihat Daftar Kamar                                   |");
-                            System.out.println("| 3. Keluar                                               |");
+                            System.out.println("| 3. Sewa Kamar                                           |");
+                            System.out.println("| 4. Lihat Daftar Kamar                                   |");
+                            System.out.println("| 5. Keluar                                               |");
                             System.out.println("==========================================================");
                             isLoggedin = true;
                             System.out.print("Pilih menu: ");
@@ -348,7 +348,7 @@ public class formLogin {
                                 // Menu Lihat Jadwal Reservasi
                                 System.out.println("Anda memilih menu Lihat History Reservasi.");
                                 // Tambahkan kode untuk melihat jadwal reservasi
-                            } else if (adminChoice == 3) {
+                            } else if (adminChoice == 5) {
                                 // keluar dari akun admin
                                 isLoggedin = false;
                                 isNewData = true;
