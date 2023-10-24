@@ -51,7 +51,7 @@ public class formLogin {
                             System.out.println("Masukkan Data Pasien");
                             System.out.println("");
 
-                            System.out.println("Apakah pasien memiliki karti berobat? (0 = tidak, 1 = ya)");
+                            System.out.println("Apakah pasien memiliki kartu berobat? (0 = tidak, 1 = ya)");
                             status = sc.next().charAt(0);
 
                             if (status == '0') {
