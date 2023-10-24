@@ -5,7 +5,9 @@ public class formLogin {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Scanner sc = new Scanner(System.in);
-        int mainChoice;
+        int mainChoice, usiaPasien, potonganBpjs, harga, hargaAkhir;
+        String noKtp, noBpjs, namaPasien, KeluhanPasien, kategoriPasien, noKartu;
+        char statusbpjs, pembayaran, status;
         boolean isLoggedin = false;
         while (isLoggedin == false) {
             System.out.println("===============================================");
@@ -44,13 +46,7 @@ public class formLogin {
                             if (adminChoice == 1) {
                                 // Menu Reservasi Baru
                                 System.out.println("Anda memilih menu Reservasi Baru.");
-                                // membuat variable string atau karakter
-                                String noKtp, noBpjs, namaPasien, KeluhanPasien, kategoriPasien, noKartu;
-                                char statusbpjs, pembayaran, status;
-
-                                // membuat varible int berupa angka yang memerlukan perhitungan
-                                int usiaPasien, potonganBpjs, hargaAkhir;
-
+                                System.out.println("==========================================================");
                                 System.out.println("Selamat Datang Di Klinikt X - Admin");
                                 System.out.println("Masukkan Data Pasien");
                                 System.out.println("");
@@ -161,7 +157,7 @@ public class formLogin {
                                 System.out.println("Potongan BPJS(%)              : " + potonganBpjs);
                                 // harga di tentukan sesuai kategori usia pasien
                                 System.out.println("Harga                       : ");
-                                int harga = sc.nextInt();
+                                harga = sc.nextInt();
                                 
 
                                 // memproses perhitungan pembayaran
@@ -219,16 +215,30 @@ public class formLogin {
                             if (adminChoice == 1) {
                                 // Menu Reservasi Baru
                                 System.out.println("Anda memilih menu Reservasi Baru.");
-                                // membuat variable string atau karakter
-                                String noKtp, noBpjs, namaPasien, KeluhanPasien, kategoriPasien, noKartu;
-                                char statusbpjs, pembayaran;
-
-                                // membuat varible int berupa angka yang memerlukan perhitungan
-                                int usiaPasien, potonganBpjs, harga, hargaAkhir;
-
-                                System.out.println("Selamat Datang Di Rumah Sakit X - Admin");
+                                System.out.println("Selamat Datang Di Klinik X - Admin");
                                 System.out.println("Masukkan Data Pasien");
                                 System.out.println("");
+
+                                System.out.println("Apakah pasien memiliki karti berobat? (0 = tidak, 1 = ya)");
+                                status = sc.next().charAt(0);
+
+                                if (status == '0') {
+                                    System.out.println("Silahkan melakukan registrasi di bawah ini :");
+                                    noKartu = sc.nextLine();
+                                    System.out.print("No Kartu  : ");
+                                    noKartu = sc.nextLine();
+                                    System.out.print("Nama      : ");
+                                    String nama = sc.nextLine();
+                                    System.out.print("Alamat    : ");
+                                    String alamat = sc.nextLine();
+                                    System.out.print("No. Telp    : ");
+                                    String noTelp = sc.nextLine();
+                                    //menyimpan data
+                                    System.out.println("Data berhasil disimpan");
+                                }else{
+                                    System.out.print("pasien sudah memiliki kartu berobat");
+                                    //lanjut ke form transaksi
+                                }
 
                                 // membuat inputan data pasien untuk admin
                                 System.out.print("No KTP                      :");
@@ -253,14 +263,14 @@ public class formLogin {
 
                                 // usia menggunakan ifelse menentukan biaya konsultasi atau berobat
                                 System.out.print("Usia                        : ");
-                                usiaPasien = sc.nextInt();
-                                if (usiaPasien <= 17) {
-                                    kategoriPasien = "A-Anak";
-                                    harga = 5000;
-                                } else {
-                                    kategoriPasien = "D-Dewasa";
-                                    harga = 10000;
-                                }
+                                // usiaPasien = sc.nextInt();
+                                // if (usiaPasien <= 17) {
+                                //     kategoriPasien = "A-Anak";
+                                //     harga = 5000;
+                                // } else {
+                                //     kategoriPasien = "D-Dewasa";
+                                //     harga = 10000;
+                                // }
 
                                 KeluhanPasien = sc.nextLine();
                                 System.out.print("Keluhan                     : ");
@@ -314,7 +324,8 @@ public class formLogin {
                                 // potongan BPJS pada klinik 100%
                                 System.out.println("Potongan BPJS(%)            : " + potonganBpjs);
                                 // harga di tentukan sesuai kategori usia pasien
-                                System.out.println("Harga                       : " + harga);
+                                System.out.println("Harga                       : ");
+                                harga = sc.nextInt();
 
                                 // memproses perhitungan pembayaran
                                 hargaAkhir = harga - (harga * potonganBpjs / 100);
@@ -353,8 +364,7 @@ public class formLogin {
                         System.out.println("Login gagal. Username atau password salah.");
                         isLoggedin = false;
                     }
-                }
-                    
+                }  
             } else if (mainChoice == 2) {
                 // Keluar dari program
                 System.out.println("Terima kasih! Program selesai.");
