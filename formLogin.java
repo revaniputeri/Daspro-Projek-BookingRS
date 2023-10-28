@@ -7,7 +7,7 @@ public class formLogin {
         Scanner sc = new Scanner(System.in);
         Scanner sc1 = new Scanner(System.in);
         // variable
-        int mainChoice, usiaPasien, potonganBpjs, harga, hargaAkhir;
+        int mainChoice, usiaPasien[] = new int[100], potonganBpjs, harga, hargaAkhir;
         String noKtp[] = new String[100], noBpjs[] = new String[100], KeluhanPasien[] = new String[100],
                 namaPasien[] = new String[100], noKartu[] = new String[100], usernameadmn[] = { "admin1", "admin2" },
                 pass[] = { "adminsatuu", "admindua" }, alamatPasien[] = new String[100], noTelp[] = new String[100],
@@ -64,13 +64,14 @@ public class formLogin {
                                     for (int j = 0; j <= noKartu.length; j++) {
                                         System.out.println("Silahkan melakukan registrasi di bawah ini :");
                                         System.out.print("No Kartu  : ");
-                                        noKartu[j] = sc.nextLine();
+                                        noKartu[j] = sc1.nextLine();
+                                        noKartuTransaksi[i] = noKartu[j];
                                         System.out.print("Nama      : ");
-                                        namaPasien[j] = sc.nextLine();
+                                        namaPasien[j] = sc1.nextLine();
                                         System.out.print("Alamat    : ");
-                                        alamatPasien[j] = sc.nextLine();
+                                        alamatPasien[j] = sc1.nextLine();
                                         System.out.print("No. Telp  : ");
-                                        noTelp[j] = sc.nextLine();
+                                        noTelp[j] = sc1.nextLine();
                                         // menyimpan data
                                         System.out.println("--------------------------------------------------");
                                         System.out.println("Data berhasil disimpan");
@@ -84,7 +85,7 @@ public class formLogin {
                                 } else {
                                     System.out.println("pasien sudah memiliki kartu berobat");
                                     System.out.print("No Kartu                   :");
-                                    noKartuTransaksi[i] = sc.nextLine();
+                                    noKartuTransaksi[i] = sc1.nextLine();
                                     // lanjut ke form transaksi
                                 }
 
@@ -104,7 +105,7 @@ public class formLogin {
 
                                 // usia menggunakan ifelse menentukan biaya konsultasi atau berobat
                                 System.out.print("Usia                        : ");
-                                usiaPasien = input.nextInt();
+                                usiaPasien[i] = input.nextInt();
                                 // if (usiaPasien <= 17) {
                                 // kategoriPasien = "A-Anak";
                                 // harga = 5000;
@@ -160,20 +161,27 @@ public class formLogin {
                                     }
                                 } while (!isDokter);
                                 System.out.println("--------------------------------------------------");
-
+                                System.out.println("               Struk Transaksi                    ");
+                                System.out.println("--------------------------------------------------");
+                                System.out.println("No Kartu Berobat    :" + noKartuTransaksi[i]);
+                                System.out.println("No BPJS             :" + noBpjs[i]);
+                                System.out.println("Nama Pasien         :" + namaPasien[i]);
+                                System.out.println("Usia Pasien         :" + usiaPasien[i]);
+                                System.out.println("Keluhan Pasien      :" + KeluhanPasien[i]);
+                                System.out.println("--------------------------------------------------");
                                 // potongan BPJS pada klinik 100%
-                                System.out.println("Potongan BPJS(%)              :     " + potonganBpjs);
+                                System.out.println("Potongan BPJS(%)    :     " + potonganBpjs);
                                 // harga di tentukan sesuai kategori usia pasien
-                                System.out.print("Harga                         : Rp. ");
+                                System.out.print("Harga               : Rp. ");
                                 harga = sc.nextInt();
 
                                 // memproses perhitungan pembayaran
                                 hargaAkhir = harga - (harga * potonganBpjs / 100);
                                 System.out.println("--------------------------------------------------");
-                                System.out.println("Harga Akhir                     : Rp. " + hargaAkhir);
+                                System.out.println("Harga Akhir         : Rp. " + hargaAkhir);
 
                                 // pembayaran debit atau tunai by fauzi
-                                System.out.println("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
+                                System.out.print("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
                                 pembayaran = sc.next().charAt(0);
                                 if (hargaAkhir == 0) {
                                     System.out.println("Pembayaran Gratis");
