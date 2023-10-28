@@ -4,7 +4,7 @@ public class formRegistrasiPasien {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        char status;
+        char status, statusKartu;
 
         System.out.println("Apakah pasien memiliki kartu berobat? (0 = tidak, 1 = ya)");
         status = sc.next().charAt(0);
@@ -32,9 +32,19 @@ public class formRegistrasiPasien {
             System.out.println("Nama: "+namaPasien[i]);
             System.out.println("alamat: "+alamatPasien[i]);
             System.out.println("no telp: "+noTelp[i]);
+            System.out.println("Ingin melihat daftar kartu? (0 = tidak, 1 = ya)");
+            // if (statusKartu == 1) {
+            //     System.out.println("No kartu: ");
+            //     System.out.println("Nama: ");
+            //     System.out.println("alamat: ");
+            //     System.out.println("no telp: ");
+            // }
+            // for(String a : noKartu){
+            //     System.out.println(a);
+            // }
 
         }else{
-            System.out.print("pasien sudah memiliki kartu berobat");
+            System.out.print("pasien sudah memiliki kartu berobat ");
             //lanjut ke form transaksi
         }
 
