@@ -8,7 +8,7 @@ public class formLogin {
         Scanner sc1 = new Scanner(System.in);
         // variable
         int mainChoice, usiaPasien[] = new int[100], potonganBpjs, harga, hargaAkhir, jumlahTransaksi = 0,
-                grandTotal[] = new int[100], jumlahPasien = 0, statusRs;
+                grandTotal[] = new int[100], jumlahPasien = 0, statusRs, hasil = 0;
         String noKtp[] = new String[100], noBpjs[] = new String[100], KeluhanPasien[] = new String[100],
                 namaPasien[] = new String[100], noKartu[] = new String[100], usernameadmn[] = { "admin1", "admin2" },
                 pass[] = { "adminsatuu", "admindua" }, alamatPasien[] = new String[100], noTelp[] = new String[100],
@@ -262,16 +262,22 @@ public class formLogin {
                                 System.out.println((i + 1) + ". " + daftarRs[i]);
                             }
 
-                            System.out.println("==================================");
-                            System.out.print("Masukkan nomor (1 - " + daftarRs.length + "): ");
-                            int selectedRsIndex = sc.nextInt();
-
-                            if (selectedRsIndex >= 1 && selectedRsIndex <= daftarRs.length) {
-                                statusRs = selectedRsIndex - 1; // Mengonversi nomor RS ke indeks dalam array
-                                System.out.println("Anda telah memilih RS " + daftarRs[statusRs]);
-                                rsRujukan[statusRs] = daftarRs[statusRs];
-                            } else {
-                                System.out.println("Nomor RS tidak valid.");
+                            boolean isValid = false;
+                            while (isValid != true) {
+                                System.out.println("==================================");
+                                System.out.print("Masukkan nomor (1 - " + daftarRs.length + "): ");
+                                int selectedRsIndex = sc.nextInt();
+                                if (selectedRsIndex >= 1 && selectedRsIndex <= daftarRs.length) {
+                                    statusRs = selectedRsIndex - 1; // Mengonversi nomor RS ke indeks dalam array
+                                    System.out.println("Anda telah memilih " + daftarRs[statusRs]);
+                                    rsRujukan[statusRs] = daftarRs[statusRs];
+                                    isValid = true;
+                                    break;
+                                }else{
+                                    System.out.println("data tidak valid");
+                                    isValid = false;
+                                    continue;
+                                }
                             }
 
                             // System.out.print("No Kartu Pasien : ");
