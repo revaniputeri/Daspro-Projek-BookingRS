@@ -226,6 +226,16 @@ public class formLogin {
                                     System.out.println("- Total Biaya       : " + grandTotal[j]);
                                     System.out.println("--------------------------------------------------");
                                 }
+
+                                System.out.print("Masukkan No Kartu Pasien: ");
+                                key = sc1.nextLine();
+                                for (int i = 0; i < noKartuTransaksi.length; i++) {
+                                    if (noKartuTransaksi[i] == key) {
+                                        hasil = i;
+                                        break;
+                                    }
+                                }
+                                System.out.println("No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
                             }
                         } else if (adminChoice == 3) {
                             // Menu Sewa Kamar
@@ -264,7 +274,7 @@ public class formLogin {
                                 System.out.println("Nomor RS tidak valid.");
                             }
 
-                            // System.out.print("No Kartu Pasien             : ");
+                            // System.out.print("No Kartu Pasien : ");
                             // noKartuRujuk = sc.next();
                             boolean dataDitemukan = false;
                             while (!dataDitemukan) {
