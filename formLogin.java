@@ -226,16 +226,25 @@ public class formLogin {
                                     System.out.println("- Total Biaya       : " + grandTotal[j]);
                                     System.out.println("--------------------------------------------------");
                                 }
-
-                                System.out.print("Masukkan No Kartu Pasien: ");
-                                key = sc1.nextLine();
-                                for (int i = 0; i < noKartuTransaksi.length; i++) {
-                                    if (noKartuTransaksi[i] == key) {
-                                        hasil = i;
-                                        break;
+                                boolean isValid = false;
+                                while (!isValid) {
+                                    System.out.print("Masukkan No Kartu Pasien: ");
+                                    key = sc1.nextLine();
+                                    for (int i = 0; i < noKartuTransaksi.length; i++) {
+                                        if (key.equalsIgnoreCase(noKartuTransaksi[i])) {
+                                            hasil = i;
+                                            System.out.println("No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
+                                            isValid = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!isValid) {
+                                        System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
+                                        isValid = false;
+                                        continue;
                                     }
                                 }
-                                System.out.println("No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
+
                             }
                         } else if (adminChoice == 3) {
                             // Menu Sewa Kamar
@@ -273,7 +282,7 @@ public class formLogin {
                                     rsRujukan[statusRs] = daftarRs[statusRs];
                                     isValid = true;
                                     break;
-                                }else{
+                                } else {
                                     System.out.println("data tidak valid");
                                     isValid = false;
                                     continue;
