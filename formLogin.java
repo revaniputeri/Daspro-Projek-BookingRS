@@ -243,8 +243,92 @@ public class formLogin {
                             }
                             System.out.println("=================================");
                         } else if (adminChoice == 5) {
+                            int jumlahTransaksiRujuk = 0;
                             // Menu Rujuk Pasien
-                            
+                            System.out.println("==================================");
+                            System.out.println("    Daftar RS Rujukan Klinik X    ");
+                            System.out.println("==================================");
+                            for (int i = 0; i < daftarRs.length; i++) {
+                                System.out.println((i + 1) + ". " + daftarRs[i]);
+                            }
+
+                            System.out.println("==================================");
+                            System.out.print("Masukkan nomor (1 - " + daftarRs.length + "): ");
+                            int selectedRsIndex = sc.nextInt();
+
+                            if (selectedRsIndex >= 1 && selectedRsIndex <= daftarRs.length) {
+                                statusRs = selectedRsIndex - 1; // Mengonversi nomor RS ke indeks dalam array
+                                System.out.println("Anda telah memilih RS " + daftarRs[statusRs]);
+                                rsRujukan[statusRs] = daftarRs[statusRs];
+                            } else {
+                                System.out.println("Nomor RS tidak valid.");
+                            }
+
+                            // System.out.print("No Kartu Pasien             : ");
+                            // noKartuRujuk = sc.next();
+                            boolean dataDitemukan = false;
+                            while (!dataDitemukan) {
+                                System.out.print("No Kartu Pasien             : ");
+                                noKartuRujuk = sc.next();
+
+                                for (int i = 0; i < noKartuTransaksi.length; i++) {
+                                    if (noKartuRujuk.equalsIgnoreCase(noKartuTransaksi[i])) {
+                                        statusRs = i;
+                                        noKartuRujuk = noKartuTransaksi[statusRs];
+                                        System.out.println("No Kartu Pasien : " + noKartuRujuk);
+                                        System.out.println("Nama Pasien     : " + namaPasien[statusRs]);
+                                        dataDitemukan = true;
+                                        jumlahTransaksiRujuk++;
+                                        break;
+                                    }
+                                }
+                                if (!dataDitemukan) {
+                                    System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
+                                    dataDitemukan = false;
+                                    continue;
+                                }
+
+                                System.out.print("Apakah pasien memiliki kartu BPJS (0 = ya, 1 = tidak)? ");
+                                statusbpjs = sc.next().charAt(0);
+
+                                if (statusbpjs == '0') {
+                                    boolean bpjsDataDitemukan = false;
+                                    while (!bpjsDataDitemukan) {
+                                        System.out.print("Masukkan No.BPJS pasien     : ");
+                                        noBpjsRujuk = sc.next();
+
+                                        for (int i = 0; i < noBpjs.length; i++) {
+                                            if (noBpjsRujuk.equalsIgnoreCase(noBpjs[i])) {
+                                                statusRs = i;
+                                                System.out.println("Nama Pasien     : " + namaPasien[statusRs]);
+                                                bpjsDataDitemukan = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!bpjsDataDitemukan) {
+                                            System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
+                                            bpjsDataDitemukan = false;
+                                            continue;
+                                        }
+                                    }
+                                } else {
+                                    potonganBpjs = 0;
+                                }
+                                statusRs = 0;
+                                noBpjsRujuk = noBpjs[statusRs];
+                                System.out.print("Alasan Rujuk                :");
+                                alasanRujuk[statusRs] = sc1.nextLine();
+                                System.out.println("--------------------------------------------------");
+                                System.out.println("         Struk Transaksi - Rujuk Pasien           ");
+                                System.out.println("--------------------------------------------------");
+                                System.out.println("No Kartu Berobat    :" + noKartuRujuk);
+                                System.out.println("No BPJS             :" + noBpjsRujuk);
+                                System.out.println("Nama Pasien         :" + namaPasien[statusRs]);
+                                System.out.println("Usia Pasien         :" + usiaPasien[statusRs]);
+                                System.out.println("Alasan Rujuk        :" + alasanRujuk[statusRs]);
+                                System.out.println("--------------------------------------------------");
+                                System.out.println("Transaksi Selesai - Status Pending");
+                            }
                         } else if (adminChoice == 6) {
                             // Keluar dari akun admin
                             System.out.println("Anda telah keluar dari akun " + usernameadmn[0]);
