@@ -8,12 +8,15 @@ public class formLogin {
         Scanner sc1 = new Scanner(System.in);
         // variable
         int mainChoice, usiaPasien[] = new int[100], potonganBpjs, harga, hargaAkhir, jumlahTransaksi = 0,
-                grandTotal[] = new int[100];
+                grandTotal[] = new int[100], jumlahPasien = 0, statusRs;
         String noKtp[] = new String[100], noBpjs[] = new String[100], KeluhanPasien[] = new String[100],
                 namaPasien[] = new String[100], noKartu[] = new String[100], usernameadmn[] = { "admin1", "admin2" },
                 pass[] = { "adminsatuu", "admindua" }, alamatPasien[] = new String[100], noTelp[] = new String[100],
-                noKartuTransaksi[] = new String[100], statusKamar[] = { "Penuh", "Tersedia", "Tersedia", "Tersedia", "Penuh" };
-        ;
+                noKartuTransaksi[] = new String[100],
+                statusKamar[] = { "Penuh", "Tersedia", "Tersedia", "Tersedia", "Penuh" },
+                daftarRs[] = { "RS-Panti Nirmala", "RS-Islam Aisyiyah", "RS-UD Saiful Anwar" }, key = "",
+                rsRujukan[] = new String[100], noKartuDebit[] = new String[100], noBpjsRujuk, noKartuRujuk,
+                alasanRujuk[] = new String[100];
         char statusbpjs, pembayaran, status;
         boolean isLoggedin = false;
         while (isLoggedin == false) {
@@ -84,6 +87,7 @@ public class formLogin {
                                         System.out.println("--------------------------------------------------");
                                         break;
                                     }
+                                    jumlahPasien++;
                                 } else {
                                     System.out.println("pasien sudah memiliki kartu berobat");
                                     System.out.print("No Kartu                   :");
@@ -182,17 +186,18 @@ public class formLogin {
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("Harga Akhir         : Rp. " + hargaAkhir);
                                 grandTotal[jumlahTransaksi] = hargaAkhir;
-
-                                // pembayaran debit atau tunai by fauzi
-                                System.out.print("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
-                                pembayaran = sc.next().charAt(0);
-                                jumlahTransaksi++;
                                 if (hargaAkhir == 0) {
                                     System.out.println("Pembayaran Gratis");
+                                    jumlahTransaksi++;
+                                    break;
                                 } else {
+                                    // pembayaran debit atau tunai by fauzi
+                                    System.out.print("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
+                                    pembayaran = sc.next().charAt(0);
+                                    jumlahTransaksi++;
                                     if (pembayaran == '1') {
                                         System.out.print("Masukan pin kartu debit:");
-                                        noKartu[jumlahTransaksi] = input.nextLine();
+                                        noKartuDebit[jumlahTransaksi] = input.nextLine();
                                         System.out.println("Pembayaran menggunakan Debit - Lunas");
                                         break;
                                     } else {
@@ -200,29 +205,11 @@ public class formLogin {
                                         break;
                                     }
                                 }
-
                             }
                             isNewData = false;
 
                         } else if (adminChoice == 2) {
                             // Menu Lihat History Reservasi / transaksi klinik
-                            System.out.println("==========================================================");
-                            System.out.println("Anda memilih menu Lihat History Transaksi.");
-                            if (jumlahTransaksi == 0) {
-                                System.out.println("Belum ada transaksi");
-                            } else {
-                                System.out.println("Histori Transaksi");
-                                for (int j = 0; j < jumlahTransaksi; j++) {
-                                    System.out.println("TRANSAKSI KE-" + (j + 1));
-                                    System.out.println("- No Kartu Berobat  : " + noKartuTransaksi[j]);
-                                    System.out.println("- No Kartu BPJS     : " + noBpjs[j]);
-                                    System.out.println("- Nama Pasien       : " + namaPasien[j]);
-                                    System.out.println("- Usia Pasien       : " + usiaPasien[j]);
-                                    System.out.println("- Keluhan Pasien    : " + KeluhanPasien[j]);
-                                    System.out.println("- Total Biaya       : " + grandTotal[j]);
-                                    System.out.println("--------------------------------------------------");
-                                }
-                            }
                         } else if (adminChoice == 3) {
                             // Menu Sewa Kamar
                         } else if (adminChoice == 4) {
