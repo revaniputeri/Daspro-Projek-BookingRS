@@ -210,6 +210,23 @@ public class formLogin {
 
                         } else if (adminChoice == 2) {
                             // Menu Lihat History Reservasi / transaksi klinik
+                            System.out.println("==========================================================");
+                            System.out.println("Anda memilih menu Lihat History Transaksi.");
+                            if (jumlahTransaksi == 0) {
+                                System.out.println("Belum ada transaksi");
+                            } else {
+                                System.out.println("Histori Transaksi");
+                                for (int j = 0; j < jumlahTransaksi; j++) {
+                                    System.out.println("TRANSAKSI KE-" + (j + 1));
+                                    System.out.println("- No Kartu Berobat  : " + noKartuTransaksi[j]);
+                                    System.out.println("- No Kartu BPJS     : " + noBpjs[j]);
+                                    System.out.println("- Nama Pasien       : " + namaPasien[j]);
+                                    System.out.println("- Usia Pasien       : " + usiaPasien[j]);
+                                    System.out.println("- Keluhan Pasien    : " + KeluhanPasien[j]);
+                                    System.out.println("- Total Biaya       : " + grandTotal[j]);
+                                    System.out.println("--------------------------------------------------");
+                                }
+                            }
                         } else if (adminChoice == 3) {
                             // Menu Sewa Kamar
                         } else if (adminChoice == 4) {
