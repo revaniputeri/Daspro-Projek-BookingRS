@@ -7,7 +7,8 @@ public class formLogin {
         Scanner sc = new Scanner(System.in);
         Scanner sc1 = new Scanner(System.in);
         // variable
-        int mainChoice, usiaPasien[] = new int[100], potonganBpjs, harga, hargaAkhir, jumlahTransaksi = 0,
+        int mainChoice, usiaPasien[] = new int[100], potonganBpjs, harga[] = new int[100], hargaAkhir,
+                jumlahTransaksi = 0, usiaPasienRujuk[] = new int[100],
                 grandTotal[] = new int[100], jumlahPasien = 0, statusRs, hasil = 0;
         String noKtp[] = new String[100], noBpjs[] = new String[100], KeluhanPasien[] = new String[100],
                 namaPasien[] = new String[100], noKartu[] = new String[100], usernameadmn[] = { "admin1", "admin2" },
@@ -15,8 +16,9 @@ public class formLogin {
                 noKartuTransaksi[] = new String[100],
                 statusKamar[] = { "Penuh", "Tersedia", "Tersedia", "Tersedia", "Penuh" },
                 daftarRs[] = { "RS-Panti Nirmala", "RS-Islam Aisyiyah", "RS-UD Saiful Anwar" }, key = "",
-                rsRujukan[] = new String[100], noKartuDebit[] = new String[100], noBpjsRujuk, noKartuRujuk,
-                alasanRujuk[] = new String[100];
+                rsRujukan[] = new String[100], noKartuDebit[] = new String[100], noBpjsRujuktemp, noKartuRujuktemp,
+                alasanRujuk[] = new String[100], namaPasienRujuk[] = new String[100], noBpjsRujuk[] = new String[100],
+                noKartuRujuk[] = new String[100];
         char statusbpjs, pembayaran, status;
         boolean isLoggedin = false;
         while (isLoggedin == false) {
@@ -182,10 +184,10 @@ public class formLogin {
                                 System.out.println("Potongan BPJS(%)    :     " + potonganBpjs);
                                 // harga di tentukan sesuai kategori usia pasien
                                 System.out.print("Harga               : Rp. ");
-                                harga = sc.nextInt();
+                                harga[jumlahTransaksi] = sc.nextInt();
 
                                 // memproses perhitungan pembayaran
-                                hargaAkhir = harga - (harga * potonganBpjs / 100);
+                                hargaAkhir = harga[jumlahTransaksi] - (harga[jumlahTransaksi] * potonganBpjs / 100);
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("Harga Akhir         : Rp. " + hargaAkhir);
                                 grandTotal[jumlahTransaksi] = hargaAkhir;
@@ -236,7 +238,8 @@ public class formLogin {
                                     for (int i = 0; i < noKartuTransaksi.length; i++) {
                                         if (key.equalsIgnoreCase(noKartuTransaksi[i])) {
                                             hasil = i;
-                                            System.out.println("No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
+                                            System.out.println(
+                                                    "No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
                                             isValid = true;
                                             break;
                                         }
@@ -296,15 +299,16 @@ public class formLogin {
                             // noKartuRujuk = sc.next();
                             boolean dataDitemukan = false;
                             while (!dataDitemukan) {
-                                System.out.print("No Kartu Pasien             : ");
-                                noKartuRujuk = sc.next();
-
                                 for (int i = 0; i < noKartuTransaksi.length; i++) {
-                                    if (noKartuRujuk.equalsIgnoreCase(noKartuTransaksi[i])) {
+                                    System.out.print("No Kartu Pasien             : ");
+                                    noKartuRujuk[i] = sc.next();
+                                    if (noKartuRujuk[i].equalsIgnoreCase(noKartuTransaksi[i])) {
                                         statusRs = i;
-                                        noKartuRujuk = noKartuTransaksi[statusRs];
-                                        System.out.println("No Kartu Pasien : " + noKartuRujuk);
+                                        System.out.println("No Kartu Pasien : " + noKartuRujuk[statusRs]);
                                         System.out.println("Nama Pasien     : " + namaPasien[statusRs]);
+                                        System.out.println("Usia Pasien     : " + usiaPasien[statusRs]);
+                                        namaPasienRujuk[statusRs] = namaPasien[statusRs];
+                                        usiaPasienRujuk[statusRs] = usiaPasien[statusRs];
                                         dataDitemukan = true;
                                         jumlahTransaksiRujuk++;
                                         break;
@@ -322,11 +326,11 @@ public class formLogin {
                                 if (statusbpjs == '0') {
                                     boolean bpjsDataDitemukan = false;
                                     while (!bpjsDataDitemukan) {
-                                        System.out.print("Masukkan No.BPJS pasien     : ");
-                                        noBpjsRujuk = sc.next();
-
                                         for (int i = 0; i < noBpjs.length; i++) {
-                                            if (noBpjsRujuk.equalsIgnoreCase(noBpjs[i])) {
+                                            System.out.print("Masukkan No.BPJS pasien     : ");
+                                            noBpjsRujuk[i] = sc.next();
+
+                                            if (noBpjsRujuk[i].equalsIgnoreCase(noBpjs[i])) {
                                                 statusRs = i;
                                                 System.out.println("Nama Pasien     : " + namaPasien[statusRs]);
                                                 bpjsDataDitemukan = true;
@@ -343,16 +347,15 @@ public class formLogin {
                                     potonganBpjs = 0;
                                 }
                                 statusRs = 0;
-                                noBpjsRujuk = noBpjs[statusRs];
                                 System.out.print("Alasan Rujuk                :");
                                 alasanRujuk[statusRs] = sc1.nextLine();
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("         Struk Transaksi - Rujuk Pasien           ");
                                 System.out.println("--------------------------------------------------");
-                                System.out.println("No Kartu Berobat    :" + noKartuRujuk);
-                                System.out.println("No BPJS             :" + noBpjsRujuk);
-                                System.out.println("Nama Pasien         :" + namaPasien[statusRs]);
-                                System.out.println("Usia Pasien         :" + usiaPasien[statusRs]);
+                                System.out.println("No Kartu Berobat    :" + noKartuRujuk[statusRs]);
+                                System.out.println("No BPJS             :" + noBpjsRujuk[statusRs]);
+                                System.out.println("Nama Pasien         :" + namaPasienRujuk[statusRs]);
+                                System.out.println("Usia Pasien         :" + usiaPasienRujuk[statusRs]);
                                 System.out.println("Alasan Rujuk        :" + alasanRujuk[statusRs]);
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("Transaksi Selesai - Status Pending");
