@@ -73,6 +73,8 @@ public class formLogin {
                                         noKartuTransaksi[jumlahTransaksi] = noKartu[j];
                                         System.out.print("Nama      : ");
                                         namaPasien[j] = sc1.nextLine();
+                                        System.out.print("No KTP    : ");
+                                        noKtp[j] = sc1.nextLine();
                                         System.out.print("Alamat    : ");
                                         alamatPasien[j] = sc1.nextLine();
                                         System.out.print("No. Telp  : ");
@@ -82,6 +84,7 @@ public class formLogin {
                                         System.out.println("Data berhasil disimpan");
                                         System.out.println("No kartu    : " + noKartu[j]);
                                         System.out.println("Nama        : " + namaPasien[j]);
+                                        System.out.println("No KTP      : " + noKtp[j]);
                                         System.out.println("alamat      : " + alamatPasien[j]);
                                         System.out.println("no telp     : " + noTelp[j]);
                                         System.out.println("--------------------------------------------------");
