@@ -8,23 +8,26 @@ public class formLogin {
         Scanner sc1 = new Scanner(System.in);
         // variable
         int transaksiPasien2[][] = new int[3][20],
-            mainChoice, usiaPasien[] = new int[100], potonganBpjs, harga[] = new int[100], hargaAkhir,
-            jumlahTransaksi = 0, usiaPasienRujuk[] = new int[100],
-            grandTotal[] = new int[100], jumlahPasien = 0, statusRs, hasil = 0;
+            mainChoice, 
+            potonganBpjs, 
+            jumlahTransaksi = 0,
+            grandTotal[] = new int[100], 
+            jumlahPasien = 0, 
+            statusRs, 
+            hasil = 0,
+            usiaPasienRujuk[] = new int[30];
         String registrasiPasien[][] = new String[5][30], 
                 transaksiPasien[][] = new String[5][30], 
                 transaksiRujukPasien[][] = new String[5][30],
                 transaksiSewaKamar[][] = new String[4][30],
-                noKtp[] = new String[100], noBpjs[] = new String[100], KeluhanPasien[] = new String[100],
-                namaPasien[] = new String[100], noKartu[] = new String[100], usernameadmn[] = { "admin1", "admin2" },
-                pass[] = { "adminsatuu", "admindua" }, alamatPasien[] = new String[100], noTelp[] = new String[100],
-                noKartuTransaksi[] = new String[100],
+                usernameadmn[] = { "admin1", "admin2" },
+                pass[] = { "adminsatuu", "admindua" }, 
                 statusKamar[] = { "Penuh", "Tersedia", "Tersedia", "Tersedia", "Penuh" },
-                daftarRs[] = { "RS-Panti Nirmala", "RS-Islam Aisyiyah", "RS-UD Saiful Anwar" }, key = "",
-                rsRujukan[] = new String[100], noKartuDebit[] = new String[100], noBpjsRujuktemp, noKartuRujuktemp,
-                alasanRujuk[] = new String[100], namaPasienRujuk[] = new String[100], noBpjsRujuk[] = new String[100],
-                noKartuRujuk[] = new String[100];
-        char statusbpjs, pembayaran, status;
+                daftarRs[] = { "RS-Panti Nirmala", "RS-Islam Aisyiyah", "RS-UD Saiful Anwar" }, 
+                key = "";
+        char statusbpjs, 
+                pembayaran, 
+                status;
         boolean isLoggedin = false;
         while (isLoggedin == false) {
             System.out.println("===============================================");
@@ -77,7 +80,7 @@ public class formLogin {
                                         System.out.println("Silahkan melakukan registrasi di bawah ini :");
                                         System.out.print("No Kartu  : ");
                                         registrasiPasien[0][j] = sc1.nextLine();
-                                        // noKartuTransaksi[jumlahTransaksi] = noKartu[j];
+                                        transaksiPasien[0][jumlahTransaksi] = registrasiPasien[0][j];
                                         System.out.print("Nama      : ");
                                         registrasiPasien[1][j] = sc1.nextLine();
                                         System.out.print("No KTP    : ");
@@ -146,27 +149,27 @@ public class formLogin {
 
                                     switch (pemilihan) {
                                         case 1:
-                                            System.out.println("Dokter Umum - Konsultansi " + KeluhanPasien[i]);
+                                            System.out.println("Dokter Umum - Konsultansi " + transaksiPasien[3][i]);
                                             isDokter = true;
                                             break;
                                         case 2:
-                                            System.out.println("Dokter Gigi - Konsultansi " + KeluhanPasien[i]);
+                                            System.out.println("Dokter Gigi - Konsultansi " + transaksiPasien[3][i]);
                                             isDokter = true;
                                             break;
                                         case 3:
-                                            System.out.println("Bidan - Konsultansi " + KeluhanPasien[i]);
+                                            System.out.println("Bidan - Konsultansi " + transaksiPasien[3][i]);
                                             isDokter = true;
                                             break;
                                         case 4:
-                                            System.out.println("Perawat - Konsultansi " + KeluhanPasien[i]);
+                                            System.out.println("Perawat - Konsultansi " + transaksiPasien[3][i]);
                                             isDokter = true;
                                             break;
                                         case 5:
-                                            System.out.println("Petugas Lab - Konsultansi " + KeluhanPasien[i]);
+                                            System.out.println("Petugas Lab - Konsultansi " + transaksiPasien[3][i]);
                                             isDokter = true;
                                             break;
                                         case 6:
-                                            System.out.println("Tenaga Gizi - Konsultansi " + KeluhanPasien[i]);
+                                            System.out.println("Tenaga Gizi - Konsultansi " + transaksiPasien[3][i]);
                                             isDokter = true;
                                             break;
 
@@ -228,7 +231,7 @@ public class formLogin {
                                 System.out.println("Histori Transaksi");
                                 for (int j = 0; j < jumlahTransaksi; j++) {
                                     System.out.println("TRANSAKSI KE-" + (j + 1));
-                                    System.out.println("- No Kartu Berobat  : " + registrasiPasien[0][jumlahPasien]);
+                                    System.out.println("- No Kartu Berobat  : " + registrasiPasien[0][j]);
                                     System.out.println("- No Kartu BPJS     : " + transaksiPasien[1][j]);
                                     System.out.println("- Nama Pasien       : " + transaksiPasien[2][j]);
                                     System.out.println("- Usia Pasien       : " + transaksiPasien2[0][j]);
@@ -238,15 +241,18 @@ public class formLogin {
                                 }
                                 boolean isValid = false;
                                 while (!isValid) {
-                                    System.out.print("Masukkan No Kartu Pasien: ");
+                                    System.out.print("Masukkan No Kartu Pasien ('-' for exit): ");
                                     key = sc1.nextLine();
-                                    for (int i = 0; i < noKartuTransaksi.length; i++) {
-                                        if (key.equalsIgnoreCase(noKartuTransaksi[i])) {
+                                    if (key.equalsIgnoreCase("-")) {
+                                        break;
+                                    }
+                                    for (int i = 0; i < transaksiPasien.length; i++) {
+                                        if (key.equalsIgnoreCase(transaksiPasien[0][i])) {
                                             hasil = i;
                                             System.out.println(
                                                     "No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
-                                            isValid = true;
-                                            break;
+                                            isValid = false;
+                                            continue;
                                         }
                                     }
                                     if (!isValid) {
@@ -259,6 +265,17 @@ public class formLogin {
                             }
                         } else if (adminChoice == 3) {
                             // Menu Sewa Kamar
+                            System.out.println("==========================================================");
+                            System.out.println("Anda memilih menu Sewa Kamar");
+                            int noKamar;
+                            System.out.println("");
+                            System.out.println("=================================");
+                            System.out.println("|Daftar Kamar Rawat Inap Klinik X");
+                            System.out.println("=================================");
+                            for (int i = 1; i <= statusKamar.length; i++) {
+                                System.out.println("| Kamar no " + i + ": " + statusKamar[i - 1]);
+                            }
+                            System.out.println("=================================");
                         } else if (adminChoice == 4) {
                             // Menu Lihat Daftar kamar
                             System.out.println("==========================================================");
@@ -290,7 +307,7 @@ public class formLogin {
                                 if (selectedRsIndex >= 1 && selectedRsIndex <= daftarRs.length) {
                                     statusRs = selectedRsIndex - 1; // Mengonversi nomor RS ke indeks dalam array
                                     System.out.println("Anda telah memilih " + daftarRs[statusRs]);
-                                    rsRujukan[statusRs] = daftarRs[statusRs];
+                                    transaksiRujukPasien[0][statusRs] = daftarRs[statusRs];
                                     isValid = true;
                                     break;
                                 } else {
@@ -304,16 +321,16 @@ public class formLogin {
                             // noKartuRujuk = sc.next();
                             boolean dataDitemukan = false;
                             while (!dataDitemukan) {
-                                for (int i = 0; i < noKartuTransaksi.length; i++) {
+                                for (int i = 0; i < transaksiRujukPasien.length; i++) {
                                     System.out.print("No Kartu Pasien             : ");
-                                    noKartuRujuk[i] = sc.next();
-                                    if (noKartuRujuk[i].equalsIgnoreCase(noKartuTransaksi[i])) {
+                                    transaksiRujukPasien[1][i] = sc.next();
+                                    if (transaksiRujukPasien[1][i].equalsIgnoreCase(registrasiPasien[0][i])) {
                                         statusRs = i;
-                                        System.out.println("No Kartu Pasien : " + noKartuRujuk[statusRs]);
-                                        System.out.println("Nama Pasien     : " + namaPasien[statusRs]);
-                                        System.out.println("Usia Pasien     : " + usiaPasien[statusRs]);
-                                        namaPasienRujuk[statusRs] = namaPasien[statusRs];
-                                        usiaPasienRujuk[statusRs] = usiaPasien[statusRs];
+                                        System.out.println("No Kartu Pasien : " + transaksiRujukPasien[1][jumlahPasien]);
+                                        System.out.println("Nama Pasien     : " + transaksiPasien[1][jumlahPasien]);
+                                        System.out.println("Usia Pasien     : " + transaksiPasien2[0][jumlahPasien]);
+                                        transaksiRujukPasien[2][statusRs] = transaksiPasien[1][jumlahPasien];
+                                        usiaPasienRujuk[statusRs] = transaksiPasien2[0][jumlahPasien];
                                         dataDitemukan = true;
                                         jumlahTransaksiRujuk++;
                                         break;
