@@ -26,7 +26,6 @@ public class formLogin {
                 transaksiSewaKamar[][] = new String[4][30],
                 usernameadmn[] = { "admin1", "admin2" },
                 pass[] = { "adminsatuu", "admindua" },
-
                 daftarRs[] = { "RS-Panti Nirmala", "RS-Islam Aisyiyah", "RS-UD Saiful Anwar" },
                 key = "";
         char statusbpjs,
@@ -397,8 +396,11 @@ public class formLogin {
                             boolean isValid = false;
                             while (isValid != true) {
                                 System.out.println("==================================");
-                                System.out.print("Masukkan nomor (1 - " + daftarRs.length + "): ");
+                                System.out.print("Masukkan nomor (1 - " + daftarRs.length + ") (0 for exit): ");
                                 int selectedRsIndex = sc.nextInt();
+                                if (selectedRsIndex == 0) {
+                                    break;
+                                }
                                 if (selectedRsIndex >= 1 && selectedRsIndex <= daftarRs.length) {
                                     statusRs = selectedRsIndex - 1; // Mengonversi nomor RS ke indeks dalam array
                                     System.out.println("Anda telah memilih " + daftarRs[statusRs]);
@@ -444,59 +446,11 @@ public class formLogin {
                                     dataDitemukan = false;
                                     continue;
                                 }
-
-                                // boolean dataDitemukan = false;
-                                // while (!dataDitemukan) {
-                                // for (int i = 0; i < transaksiRujukPasien.length; i++) {
-                                // System.out.print("No Kartu Pasien : ");
-                                // transaksiRujukPasien[1][i] = sc.next();
-                                // if (transaksiRujukPasien[1][i].equalsIgnoreCase(registrasiPasien[0][i])) {
-                                // statusRs = i;
-                                // System.out
-                                // .println("No Kartu Pasien : " + transaksiRujukPasien[1][jumlahPasien]);
-                                // System.out.println("Nama Pasien : " + transaksiPasien[1][jumlahPasien]);
-                                // System.out.println("Usia Pasien : " + transaksiPasien2[0][jumlahPasien]);
-                                // transaksiRujukPasien[2][statusRs] = transaksiPasien[1][jumlahPasien];
-                                // usiaPasienRujuk[statusRs] = transaksiPasien2[0][jumlahPasien];
-                                // dataDitemukan = true;
-                                // jumlahTransaksiRujuk++;
-                                // break;
-                                // }
-                                // }
-                                // if (!dataDitemukan) {
-                                // System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
-                                // dataDitemukan = false;
-                                // continue;
-                                // }
-
-                                // if (statusbpjs == '0') {
-                                // boolean bpjsDataDitemukan = false;
-                                // while (!bpjsDataDitemukan) {
-                                // for (int i = 0; i < transaksiRujukPasien.length; i++) {
-                                // System.out.print("Masukkan No.BPJS pasien : ");
-                                // transaksiRujukPasien[3][i] = sc.next();
-
-                                // if (transaksiRujukPasien[3][i].equalsIgnoreCase(transaksiPasien[1][i])) {
-                                // statusRs = i;
-                                // System.out.println(
-                                // "Nama Pasien : " + transaksiRujukPasien[2][statusRs]);
-                                // bpjsDataDitemukan = true;
-                                // break;
-                                // }
-                                // }
-                                // if (!bpjsDataDitemukan) {
-                                // System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
-                                // bpjsDataDitemukan = false;
-                                // continue;
-                                // }
-                                // }
-                                // } else {
-                                // potonganBpjs = 0;
-                                // }
+                                
                                 System.out.print("Apakah pasien memiliki kartu BPJS (0 = ya, 1 = tidak)? ");
                                 statusbpjs = sc.next().charAt(0);
                                 if (statusbpjs == '0') {
-                                    System.out.println("Masukkan no BPJS          : ");
+                                    System.out.print("Masukkan no BPJS            : ");
                                     transaksiRujukPasien[3][jumlahTransaksiRujuk] = sc1.nextLine();
                                 } else {
                                     transaksiRujukPasien[3][jumlahTransaksiRujuk] = "-";
