@@ -8,12 +8,16 @@ public class formLogin {
         Scanner sc1 = new Scanner(System.in);
         // variable
         int transaksiPasien2[][] = new int[3][20],
+            transaksiSewaKamar2[][]= new int[5][20],
             mainChoice, 
             potonganBpjs, 
             jumlahTransaksi = 0,
+            jumlahTransaksiSewa =0,
             grandTotal[] = new int[100], 
             jumlahPasien = 0, 
-            statusRs, 
+            statusRs,
+            statusKm,
+            hargaKamar = 100_000, 
             hasil = 0,
             usiaPasienRujuk[] = new int[30];
         String registrasiPasien[][] = new String[5][30], 
@@ -22,13 +26,14 @@ public class formLogin {
                 transaksiSewaKamar[][] = new String[4][30],
                 usernameadmn[] = { "admin1", "admin2" },
                 pass[] = { "adminsatuu", "admindua" }, 
-                statusKamar[] = { "Penuh", "Tersedia", "Tersedia", "Tersedia", "Penuh" },
+                
                 daftarRs[] = { "RS-Panti Nirmala", "RS-Islam Aisyiyah", "RS-UD Saiful Anwar" }, 
                 key = "";
         char statusbpjs, 
                 pembayaran, 
                 status;
-        boolean isLoggedin = false;
+        boolean isLoggedin = false,
+                statusKamar[] = { true, true, true, true, true };
         while (isLoggedin == false) {
             System.out.println("===============================================");
             System.out.println("| Selamat datang di Sistem Reservasi Klinik    |");
@@ -265,17 +270,83 @@ public class formLogin {
                             }
                         } else if (adminChoice == 3) {
                             // Menu Sewa Kamar
-                            System.out.println("==========================================================");
-                            System.out.println("Anda memilih menu Sewa Kamar");
-                            int noKamar;
-                            System.out.println("");
-                            System.out.println("=================================");
-                            System.out.println("|Daftar Kamar Rawat Inap Klinik X");
-                            System.out.println("=================================");
-                            for (int i = 1; i <= statusKamar.length; i++) {
-                                System.out.println("| Kamar no " + i + ": " + statusKamar[i - 1]);
+                            for (int j = 0; j < transaksiSewaKamar.length; j++) {
+                                System.out.println("==========================================================");
+                                System.out.println("Anda memilih menu Sewa Kamar");
+                                System.out.println("");
+                                System.out.println("=================================");
+                                System.out.println("|Daftar Kamar Rawat Inap Klinik X");
+                                System.out.println("=================================");
+                                for (int i = 1; i <= statusKamar.length; i++) {
+                                    System.out.println("| Kamar no " + (i + 1) + ": "
+                                            + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
+                                }
+                                System.out.println("=================================");
+                                boolean isAvailable = false;
+                                while (isAvailable != true) {
+                                    System.out.print("Masukkan nomor kamar yang ingin Anda sewa: ");
+                                    int nomorKamar = sc.nextInt();
+
+                                    if (nomorKamar > 0 && nomorKamar <= statusKamar.length) {
+                                        if (statusKamar[nomorKamar - 1]) {
+                                            statusKamar[nomorKamar - 1] = false;
+                                            System.out.println("Anda memilih Kamar no " + nomorKamar);
+                                            transaksiSewaKamar2[0][jumlahTransaksiSewa] = nomorKamar;
+                                            isAvailable = true;
+                                            break;
+                                        }
+                                    } else {
+                                        System.out.println("Inputan tidak valid");
+                                        isAvailable = false;
+                                    }
+                                }
+                                boolean dataDitemukan = false;
+                                while (!dataDitemukan) {
+                                    for (int i = 0; i < transaksiSewaKamar.length; i++) {
+                                        System.out.print("No Kartu Pasien             : ");
+                                        transaksiSewaKamar[0][jumlahTransaksiSewa] = sc.next();
+                                        if (transaksiSewaKamar[0][jumlahTransaksiSewa].equalsIgnoreCase(registrasiPasien[0][jumlahTransaksiSewa])) {
+                                            System.out
+                                                    .println("No Kartu Pasien : "
+                                                            + transaksiSewaKamar[0][jumlahTransaksiSewa]);
+                                            System.out.println("Nama Pasien     : " + transaksiPasien[1][jumlahTransaksiSewa]);
+                                            System.out
+                                                    .println("Usia Pasien     : " + transaksiPasien2[0][jumlahTransaksiSewa]);
+                                            transaksiSewaKamar[1][jumlahTransaksiSewa] = transaksiPasien[1][jumlahTransaksiSewa];
+                                            transaksiSewaKamar2[1][jumlahTransaksiSewa] = transaksiPasien2[0][jumlahTransaksiSewa];
+                                            dataDitemukan = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!dataDitemukan) {
+                                        System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
+                                        dataDitemukan = false;
+                                        continue;
+                                    }
+                                    System.out.print("Alasan sewa / Keluhan Pasien  : ");
+                                    transaksiSewaKamar[2][jumlahTransaksiSewa] = sc.nextLine();
+                                    System.out.print("Masukkan lama menginap (hari) : ");
+                                    transaksiSewaKamar2[2][jumlahTransaksiSewa] = sc.nextInt();
+                                    System.out.println("Harga kamar/malam           : " + hargaKamar);
+                                    transaksiSewaKamar2[3][jumlahTransaksiSewa] = hargaKamar;
+                                    transaksiSewaKamar2[4][jumlahTransaksiSewa] = hargaKamar * transaksiSewaKamar2[1][jumlahTransaksiSewa];
+                                    System.out.println("Total Sewa Kamar            : " + transaksiSewaKamar2[4][jumlahTransaksiSewa]);
+
+                                    System.out.println("--------------------------------------------------");
+                                    System.out.println("         Struk Transaksi - Sewa Kamar             ");
+                                    System.out.println("--------------------------------------------------");
+                                    System.out.println("No Kartu Berobat    :" + transaksiSewaKamar[0][jumlahTransaksiSewa]);
+                                    System.out.println("Nama Pasien         :" + transaksiSewaKamar[1][jumlahTransaksiSewa]);
+                                    System.out.println("Usia Pasien         :" + transaksiSewaKamar2[1][jumlahTransaksiSewa]);
+                                    System.out.println("No Kamar yang disewa:" + transaksiSewaKamar2[0][jumlahTransaksiSewa]);
+                                    System.out.println("Keluhan Pasien      :" + transaksiSewaKamar[2][jumlahTransaksiSewa]);
+                                    System.out.println("Lama sewa kamar     :" + transaksiSewaKamar2[2][jumlahTransaksiSewa]);
+                                    System.out.println("Harga sewa/malam    :" + transaksiSewaKamar2[3][jumlahTransaksiSewa]);
+                                    System.out.println("Total Harga Sewa    :" + transaksiSewaKamar2[4][jumlahTransaksiSewa]);
+                                    System.out.println("--------------------------------------------------");
+                                    jumlahTransaksiSewa++;
+                                }
                             }
-                            System.out.println("=================================");
                         } else if (adminChoice == 4) {
                             // Menu Lihat Daftar kamar
                             System.out.println("==========================================================");
@@ -348,13 +419,13 @@ public class formLogin {
                                 if (statusbpjs == '0') {
                                     boolean bpjsDataDitemukan = false;
                                     while (!bpjsDataDitemukan) {
-                                        for (int i = 0; i < noBpjs.length; i++) {
+                                        for (int i = 0; i < transaksiRujukPasien.length; i++) {
                                             System.out.print("Masukkan No.BPJS pasien     : ");
-                                            noBpjsRujuk[i] = sc.next();
+                                            transaksiRujukPasien[3][i] = sc.next();
 
-                                            if (noBpjsRujuk[i].equalsIgnoreCase(noBpjs[i])) {
+                                            if (transaksiRujukPasien[3][i].equalsIgnoreCase(transaksiPasien[1][i])) {
                                                 statusRs = i;
-                                                System.out.println("Nama Pasien     : " + namaPasien[statusRs]);
+                                                System.out.println("Nama Pasien     : " + transaksiRujukPasien[2][statusRs]);
                                                 bpjsDataDitemukan = true;
                                                 break;
                                             }
@@ -370,15 +441,15 @@ public class formLogin {
                                 }
                                 statusRs = 0;
                                 System.out.print("Alasan Rujuk                :");
-                                alasanRujuk[statusRs] = sc1.nextLine();
+                                transaksiRujukPasien[4][statusRs] = sc1.nextLine();
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("         Struk Transaksi - Rujuk Pasien           ");
                                 System.out.println("--------------------------------------------------");
-                                System.out.println("No Kartu Berobat    :" + noKartuRujuk[statusRs]);
-                                System.out.println("No BPJS             :" + noBpjsRujuk[statusRs]);
-                                System.out.println("Nama Pasien         :" + namaPasienRujuk[statusRs]);
+                                System.out.println("No Kartu Berobat    :" + transaksiRujukPasien[0][statusRs]);
+                                System.out.println("No BPJS             :" + transaksiRujukPasien[3][statusRs]);
+                                System.out.println("Nama Pasien         :" + transaksiRujukPasien[2][statusRs]);
                                 System.out.println("Usia Pasien         :" + usiaPasienRujuk[statusRs]);
-                                System.out.println("Alasan Rujuk        :" + alasanRujuk[statusRs]);
+                                System.out.println("Alasan Rujuk        :" + transaksiRujukPasien[4][statusRs]);
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("Transaksi Selesai - Status Pending");
                             }
