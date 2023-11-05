@@ -277,9 +277,8 @@ public class formLogin {
                                 System.out.println("=================================");
                                 System.out.println("|Daftar Kamar Rawat Inap Klinik X");
                                 System.out.println("=================================");
-                                for (int i = 1; i <= statusKamar.length; i++) {
-                                    System.out.println("| Kamar no " + (i + 1) + ": "
-                                            + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
+                                for (int i = 0; i < statusKamar.length; i++) {
+                                    System.out.println("Kamar no " + (i + 1) + ": " + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
                                 }
                                 System.out.println("=================================");
                                 boolean isAvailable = false;
