@@ -209,10 +209,10 @@ public class formLogin {
                                     jumlahTransaksi++;
                                     break;
                                 } else {
+                                    jumlahTransaksi++;
                                     // pembayaran debit atau tunai by fauzi
                                     System.out.print("Metode pembayaran menggunakan(1 = debit, 2 = tunai)? ");
                                     pembayaran = sc.next().charAt(0);
-                                    jumlahTransaksi++;
                                     if (pembayaran == '1') {
                                         System.out.print("Masukan pin kartu debit:");
                                         transaksiPasien[4][jumlahTransaksi] = input.nextLine();
@@ -234,16 +234,20 @@ public class formLogin {
                                 System.out.println("Belum ada transaksi");
                             } else {
                                 System.out.println("Histori Transaksi");
-                                for (int j = 0; j < jumlahTransaksi; j++) {
+                                int j =0;
+                                do {
                                     System.out.println("TRANSAKSI KE-" + (j + 1));
-                                    System.out.println("- No Kartu Berobat  : " + registrasiPasien[0][j]);
+                                    System.out.println("- No Kartu Berobat  : " + transaksiPasien[0][j]);
                                     System.out.println("- No Kartu BPJS     : " + transaksiPasien[1][j]);
                                     System.out.println("- Nama Pasien       : " + transaksiPasien[2][j]);
                                     System.out.println("- Usia Pasien       : " + transaksiPasien2[0][j]);
                                     System.out.println("- Keluhan Pasien    : " + transaksiPasien[3][j]);
                                     System.out.println("- Total Biaya       : " + transaksiPasien2[2][j]);
                                     System.out.println("--------------------------------------------------");
-                                }
+                                    j++;
+                                } while (j<jumlahTransaksi);
+                                    
+                                
                                 boolean isValid = false;
                                 while (!isValid) {
                                     System.out.print("Masukkan No Kartu Pasien ('-' for exit): ");
