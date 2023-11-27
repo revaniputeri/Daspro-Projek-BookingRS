@@ -36,7 +36,8 @@ public class formLogin {
         }
     }
 
-    static void daftarTransaksi(String transaksiPasien[][], int transaksiPasien2[][], int jumlahTransaksi, String key, int hasil) {
+    static void daftarTransaksi(String transaksiPasien[][], int transaksiPasien2[][], int jumlahTransaksi, String key,
+            int hasil) {
         int j = 0;
         // looping do-while untuk mencetak history transaksi
         do {
@@ -77,6 +78,22 @@ public class formLogin {
                 isValid = false;
                 continue;
             }
+        }
+    }
+
+    static void daftarKamarPasien(boolean statusKamar[]) {
+        System.out.println("==========================================================");
+        System.out.println("Anda memilih menu Lihat Daftar Kamar");
+        int noKamar;
+        System.out.println("");
+        System.out.println("=================================");
+        System.out.println("|Daftar Kamar Rawat Inap Klinik X");
+        System.out.println("=================================");
+
+        // looping untuk menampilkan daftar kamar
+        for (int i = 0; i < statusKamar.length; i++) {
+            System.out.println("Kamar no " + (i + 1) + ": "
+                    + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
         }
     }
 
@@ -455,19 +472,7 @@ public class formLogin {
                             System.out.println("");
                             System.out.println("");
                             // Menu Lihat Daftar kamar
-                            System.out.println("==========================================================");
-                            System.out.println("Anda memilih menu Lihat Daftar Kamar");
-                            int noKamar;
-                            System.out.println("");
-                            System.out.println("=================================");
-                            System.out.println("|Daftar Kamar Rawat Inap Klinik X");
-                            System.out.println("=================================");
-
-                            // looping untuk menampilkan daftar kamar
-                            for (int i = 0; i < statusKamar.length; i++) {
-                                System.out.println("Kamar no " + (i + 1) + ": "
-                                        + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
-                            }
+                            daftarKamarPasien(statusKamar);
                             System.out.println("=================================");
                         } else if (adminChoice == 5) {
                             System.out.println("");
