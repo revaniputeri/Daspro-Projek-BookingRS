@@ -1,11 +1,87 @@
 import java.util.Scanner;
 
 public class formLogin {
+    static Scanner input = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
+    static Scanner sc1 = new Scanner(System.in);
+
+    static void registrasiPasien(String[][] registrasiPasien, String[][] transaksiPasien, int jumlahTransaksi) {
+        // melakukan looping untuk melakukan registrasi
+        for (int j = 0; j <= registrasiPasien.length; j++) {
+            System.out.println(
+                    "==========================================================================");
+            System.out.println("Silahkan melakukan registrasi di bawah ini :");
+            System.out.print("No Kartu  : ");
+            registrasiPasien[0][j] = sc1.nextLine();
+            transaksiPasien[0][jumlahTransaksi] = registrasiPasien[0][j];
+            System.out.print("Nama      : ");
+            registrasiPasien[1][j] = sc1.nextLine();
+            System.out.print("No KTP    : ");
+            registrasiPasien[2][j] = sc1.nextLine();
+            System.out.print("Alamat    : ");
+            registrasiPasien[3][j] = sc1.nextLine();
+            System.out.print("No. Telp  : ");
+            registrasiPasien[4][j] = sc1.nextLine();
+            // menyimpan data
+            System.out.println("--------------------------------------------------");
+            System.out.println("DATA BERHASIL DISIMPAN!");
+            System.out.println("No kartu    : " + registrasiPasien[0][j]);
+            System.out.println("Nama        : " + registrasiPasien[1][j]);
+            System.out.println("No KTP      : " + registrasiPasien[2][j]);
+            System.out.println("Alamat      : " + registrasiPasien[3][j]);
+            System.out.println("No. Telp    : " + registrasiPasien[4][j]);
+            System.out.println(
+                    "==========================================================================");
+            break;
+        }
+    }
+
+    static void daftarTransaksi(String transaksiPasien[][], int transaksiPasien2[][], int jumlahTransaksi, String key, int hasil) {
+        int j = 0;
+        // looping do-while untuk mencetak history transaksi
+        do {
+            System.out.println("TRANSAKSI KE-" + (j + 1));
+            System.out.println("- No Kartu Berobat  : " + transaksiPasien[0][j]);
+            System.out.println("- No Kartu BPJS     : " + transaksiPasien[1][j]);
+            System.out.println("- Nama Pasien       : " + transaksiPasien[2][j]);
+            System.out.println("- Usia Pasien       : " + transaksiPasien2[0][j]);
+            System.out.println("- Keluhan Pasien    : " + transaksiPasien[3][j]);
+            System.out.println("- Total Biaya       : " + transaksiPasien2[2][j]);
+            System.out.println(
+                    "==========================================================================");
+            j++;
+        } while (j < jumlahTransaksi);
+
+        boolean isValid = false;
+        // looping untuk validasi fitur search data pasien berdasarkan noKartu yang
+        // dimasukkan
+        while (!isValid) {
+            System.out.print("Masukkan No Kartu Pasien ('-' for exit): ");
+            key = sc1.nextLine();
+            if (key.equalsIgnoreCase("-")) {
+                break;
+            }
+
+            // looping untuk mencari data sesuai key
+            for (int i = 0; i < transaksiPasien.length; i++) {
+                if (key.equalsIgnoreCase(transaksiPasien[0][i])) {
+                    hasil = i;
+                    System.out.println(
+                            "No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
+                    isValid = false;
+                    continue;
+                }
+            }
+            if (!isValid) {
+                System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
+                isValid = false;
+                continue;
+            }
+        }
+    }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Scanner sc = new Scanner(System.in);
-        Scanner sc1 = new Scanner(System.in);
+
         // variable
         int transaksiPasien2[][] = new int[3][20],
                 transaksiSewaKamar2[][] = new int[5][20],
@@ -103,34 +179,10 @@ public class formLogin {
                                 status = input.next().charAt(0);
 
                                 if (status == '0') {
-                                    // melakukan looping untuk melakukan registrasi
-                                    for (int j = 0; j <= registrasiPasien.length; j++) {
-                                        System.out.println(
-                                                "==========================================================================");
-                                        System.out.println("Silahkan melakukan registrasi di bawah ini :");
-                                        System.out.print("No Kartu  : ");
-                                        registrasiPasien[0][j] = sc1.nextLine();
-                                        transaksiPasien[0][jumlahTransaksi] = registrasiPasien[0][j];
-                                        System.out.print("Nama      : ");
-                                        registrasiPasien[1][j] = sc1.nextLine();
-                                        System.out.print("No KTP    : ");
-                                        registrasiPasien[2][j] = sc1.nextLine();
-                                        System.out.print("Alamat    : ");
-                                        registrasiPasien[3][j] = sc1.nextLine();
-                                        System.out.print("No. Telp  : ");
-                                        registrasiPasien[4][j] = sc1.nextLine();
-                                        // menyimpan data
-                                        System.out.println("--------------------------------------------------");
-                                        System.out.println("DATA BERHASIL DISIMPAN!");
-                                        System.out.println("No kartu    : " + registrasiPasien[0][j]);
-                                        System.out.println("Nama        : " + registrasiPasien[1][j]);
-                                        System.out.println("No KTP      : " + registrasiPasien[2][j]);
-                                        System.out.println("Alamat      : " + registrasiPasien[3][j]);
-                                        System.out.println("No. Telp    : " + registrasiPasien[4][j]);
-                                        System.out.println(
-                                                "==========================================================================");
-                                        break;
-                                    }
+                                    // memanggil fungsi untuk registrasi pasien
+                                    registrasiPasien(registrasiPasien, transaksiPasien, jumlahTransaksiSewa);
+
+                                    // increment jumlah pasien
                                     jumlahPasien++;
                                 } else {
                                     System.out.println("PASIEN SUDAH MEMILIKI KARTU BEROBAT");
@@ -156,14 +208,6 @@ public class formLogin {
                                 // usia menggunakan ifelse menentukan biaya konsultasi atau berobat
                                 System.out.print("Usia                        : ");
                                 transaksiPasien2[0][jumlahTransaksi] = input.nextInt();
-                                // if (usiaPasien <= 17) {
-                                // kategoriPasien = "A-Anak";
-                                // harga = 5000;
-                                // } else {
-                                // kategoriPasien = "D-Dewasa";
-                                // harga = 10000;
-                                // }
-
                                 System.out.print("Keluhan                     : ");
                                 transaksiPasien[3][jumlahTransaksi] = sc1.nextLine();
                                 boolean isDokter = false;
@@ -297,47 +341,7 @@ public class formLogin {
                                         "|                           History Transaksi                             |");
                                 System.out.println(
                                         "==========================================================================");
-                                int j = 0;
-                                // looping do-while untuk mencetak history transaksi
-                                do {
-                                    System.out.println("TRANSAKSI KE-" + (j + 1));
-                                    System.out.println("- No Kartu Berobat  : " + transaksiPasien[0][j]);
-                                    System.out.println("- No Kartu BPJS     : " + transaksiPasien[1][j]);
-                                    System.out.println("- Nama Pasien       : " + transaksiPasien[2][j]);
-                                    System.out.println("- Usia Pasien       : " + transaksiPasien2[0][j]);
-                                    System.out.println("- Keluhan Pasien    : " + transaksiPasien[3][j]);
-                                    System.out.println("- Total Biaya       : " + transaksiPasien2[2][j]);
-                                    System.out.println(
-                                            "==========================================================================");
-                                    j++;
-                                } while (j < jumlahTransaksi);
-
-                                boolean isValid = false;
-                                // looping untuk validasi fitur search data pasien berdasarkan noKartu yang dimasukkan
-                                while (!isValid) {
-                                    System.out.print("Masukkan No Kartu Pasien ('-' for exit): ");
-                                    key = sc1.nextLine();
-                                    if (key.equalsIgnoreCase("-")) {
-                                        break;
-                                    }
-
-                                    // looping untuk mencari data sesuai key
-                                    for (int i = 0; i < transaksiPasien.length; i++) {
-                                        if (key.equalsIgnoreCase(transaksiPasien[0][i])) {
-                                            hasil = i;
-                                            System.out.println(
-                                                    "No Kartu Pasien " + key + " terdapat di index ke-" + hasil);
-                                            isValid = false;
-                                            continue;
-                                        }
-                                    }
-                                    if (!isValid) {
-                                        System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
-                                        isValid = false;
-                                        continue;
-                                    }
-                                }
-
+                                daftarTransaksi(transaksiPasien, transaksiPasien2, jumlahTransaksi, key, hasil);
                             }
                         } else if (adminChoice == 3) {
                             System.out.println("");
@@ -353,7 +357,7 @@ public class formLogin {
                                 System.out.println("|Daftar Kamar Rawat Inap Klinik X");
                                 System.out.println("=================================");
 
-                                //looping untuk menampilkan daftar kamar
+                                // looping untuk menampilkan daftar kamar
                                 for (int i = 0; i < statusKamar.length; i++) {
                                     System.out.println("Kamar no " + (i + 1) + ": "
                                             + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
@@ -380,9 +384,9 @@ public class formLogin {
                                 }
                                 boolean dataDitemukan = false;
 
-                                //looping untuk validasi data pasien ditemukan
+                                // looping untuk validasi data pasien ditemukan
                                 while (!dataDitemukan) {
-                                    //looping untuk mencari index pasien
+                                    // looping untuk mencari index pasien
                                     for (int i = 0; i < transaksiSewaKamar.length; i++) {
                                         System.out.print("No Kartu Pasien             : ");
                                         String cariIndex = sc.next();
@@ -459,7 +463,7 @@ public class formLogin {
                             System.out.println("|Daftar Kamar Rawat Inap Klinik X");
                             System.out.println("=================================");
 
-                            //looping untuk menampilkan daftar kamar
+                            // looping untuk menampilkan daftar kamar
                             for (int i = 0; i < statusKamar.length; i++) {
                                 System.out.println("Kamar no " + (i + 1) + ": "
                                         + (statusKamar[i] ? "Tersedia" : "Tidak Tersedia"));
@@ -474,7 +478,7 @@ public class formLogin {
                             System.out.println("    Daftar RS Rujukan Klinik X    ");
                             System.out.println("==================================");
 
-                            //looping untuk menampilkan daftar RS rujukan
+                            // looping untuk menampilkan daftar RS rujukan
                             for (int i = 0; i < daftarRs.length; i++) {
                                 System.out.println((i + 1) + ". " + daftarRs[i]);
                             }
@@ -501,15 +505,15 @@ public class formLogin {
                                 }
                             }
                             boolean dataDitemukan = false;
-                            //Looping untuk validasi data pasien yang ingin dirujuk ditemukan
+                            // Looping untuk validasi data pasien yang ingin dirujuk ditemukan
                             while (!dataDitemukan) {
-                                //looping untuk mencari index pasien
+                                // looping untuk mencari index pasien
                                 for (int i = 0; i < transaksiRujukPasien.length; i++) {
                                     System.out.print("No Kartu Pasien             : ");
                                     String cariIndex = sc.next();
                                     System.out.println("-------------------------------------------");
                                     int a = 0;
-                                    //looping untuk menampilkan data
+                                    // looping untuk menampilkan data
                                     do {
                                         if (cariIndex.equalsIgnoreCase(transaksiPasien[0][i])) {
                                             hasil = a;
