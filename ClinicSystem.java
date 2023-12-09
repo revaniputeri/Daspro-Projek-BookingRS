@@ -100,55 +100,56 @@ public class ClinicSystem {
             int choice = input.nextInt();
             input.nextLine();
 
-            if (choice == 1) {
-                registrasiPasienBaru();
-                continue;
-            } else if (choice == 2) {
-                transaksiBerobat();
-                continue;
-            } else if (choice == 3) {
-                transaksiSewaKamar();
-                continue;
-            } else if (choice == 4) {
-                transaksiRujukPasien();
-                continue;
-            } else if (choice == 5) {
-                daftarKamar();
-                continue;
-            } else if (choice == 6) {
-                dataMasterPasien();
-                continue;
-            } else if (choice == 7) {
-                historyTransaksiBerobat();
-                continue;
-            } else if (choice == 8) {
-                System.out.println("Pilih Jenis Laporan: ");
-                System.out.println("1. Laporan Harian");
-                System.out.println("2. Laporan Bulanan");
-                System.out.print("Masukkan Pilihan (1/2): ");
-                int pilihLaporan = input.nextInt();
-                if (pilihLaporan == 1) {
-                    cetakLaporanHarian();
-                } else if (pilihLaporan == 2) {
-                    cetakLaporanBulanan();
-                } else {
-                    System.out.println("Inputan Tidak Valid");
-                }
-                continue;
-            } else if (choice == 9) {
-                break;
-            } else {
-                System.out.println("Pilihan tidak valid.");
+            switch (choice) {
+                case 1:
+                    registrasiPasienBaru();
+                    break;
+                case 2:
+                    transaksiBerobat();
+                    break;
+                case 3:
+                    transaksiSewaKamar();
+                    break;
+                case 4:
+                    transaksiRujukPasien();
+                    break;
+                case 5:
+                    daftarKamar();
+                    break;
+                case 6:
+                    dataMasterPasien();
+                    break;
+                case 7:
+                    historyTransaksiBerobat();
+                    break;
+                case 8:
+                    System.out.println("Pilih Jenis Laporan: ");
+                    System.out.println("1. Laporan Harian");
+                    System.out.println("2. Laporan Bulanan");
+                    System.out.print("Masukkan Pilihan (1/2): ");
+                    int pilihLaporan = input.nextInt();
+                    if (pilihLaporan == 1) {
+                        cetakLaporanHarian();
+                    } else if (pilihLaporan == 2) {
+                        cetakLaporanBulanan();
+                    } else {
+                        System.out.println("Inputan Tidak Valid");
+                    }
+                    break;
+                case 9:
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid.");
+                    break;
             }
         }
     }
 
     static void registrasiPasienBaru() {
-        for (int j = 0; j < registrasiPasien.length; j++) {
+        for (int j = 0; j < registrasiPasien[0].length; j++) {
             System.out.println("==========================================================================");
             System.out.print("No Kartu  : ");
             registrasiPasien[0][j] = sc1.nextLine();
-            transaksiPasien[0][jumlahTransaksi] = registrasiPasien[0][j];
             System.out.print("Nama      : ");
             registrasiPasien[1][j] = sc1.nextLine();
             System.out.print("No KTP    : ");
@@ -157,7 +158,6 @@ public class ClinicSystem {
             registrasiPasien[3][j] = sc1.nextLine();
             System.out.print("No. Telp  : ");
             registrasiPasien[4][j] = sc1.nextLine();
-            // menyimpan data
             System.out.println("--------------------------------------------------");
             System.out.println("DATA BERHASIL DISIMPAN!");
             System.out.println("No kartu    : " + registrasiPasien[0][j]);
@@ -168,7 +168,7 @@ public class ClinicSystem {
             System.out.println(
                     "==========================================================================");
             jumlahPasien++;
-            break;
+            handleAdminTasks();
         }
     }
 
@@ -296,7 +296,7 @@ public class ClinicSystem {
             System.out.println("==========================================================================");
             System.out.println("");
             jumlahTransaksi++;
-            break;
+            handleAdminTasks();
         }
     }
 
@@ -357,7 +357,6 @@ public class ClinicSystem {
                             dataDitemukan = false;
                         }
                     } while (a < jumlahTransaksiSewa);
-                    break;
                 }
                 if (!dataDitemukan) {
                     System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
@@ -400,9 +399,7 @@ public class ClinicSystem {
                 System.out.printf("Total Harga Sewa    : Rp. %s%n", transaksiSewaKamar2[4][jumlahTransaksiSewa]);
                 System.out.println("==========================================================================");
                 jumlahTransaksiSewa++;
-                break;
             }
-            break;
         }
     }
 
@@ -441,7 +438,6 @@ public class ClinicSystem {
             }
         }
 
-        
         while (!dataDitemukan) {
             System.out.print("No Kartu Pasien (0 for exit): ");
             String cariIndex = sc.next();
@@ -474,7 +470,7 @@ public class ClinicSystem {
                 System.out.println("Data Pasien tidak ditemukan. Silakan coba lagi.");
                 dataDitemukan = false;
                 continue;
-            }else if (cariIndex.equalsIgnoreCase("0")) {
+            } else if (cariIndex.equalsIgnoreCase("0")) {
                 break;
             }
 
@@ -511,7 +507,6 @@ public class ClinicSystem {
         System.out.println("==========================================================================");
         System.out.println("KLINIK X - DAFTAR KAMAR");
         System.out.println("==========================================================================");
-        int noKamar;
         // looping untuk menampilkan daftar kamar
         for (int i = 0; i < statusKamar.length; i++) {
             System.out.println("Kamar no " + (i + 1) + ": "
@@ -524,21 +519,26 @@ public class ClinicSystem {
         System.out.println("==========================================================================");
         System.out.println("KLINIK X - DATA MASTER PASIEN");
         System.out.println("==========================================================================");
-        int noKamar;
         System.out.println("");
         System.out.println("==========================================================================");
-        System.out.println("| No Kartu   | Nama       | No KTP     | Alamat     | No. Telp   |");
+        System.out.println("| No Kartu   | Nama       | No KTP     | Alamat     | No. Telp           |");
         System.out.println("==========================================================================");
 
         for (int i = 0; i <= jumlahPasien; i++) {
-            System.out.printf("| %-11s| %-11s| %-11s| %-11s| %-11s|\n",
-                    registrasiPasien[0][i],
-                    registrasiPasien[1][i],
-                    registrasiPasien[2][i],
-                    registrasiPasien[3][i],
-                    registrasiPasien[4][i]);
+            if (jumlahPasien == 0) {
+                System.out.println("Belum ada data master pasien");
+            } else {
+                System.out.printf("| %-11s| %-11s| %-11s| %-11s| %-11s|\n",
+                        registrasiPasien[0][i],
+                        registrasiPasien[1][i],
+                        registrasiPasien[2][i],
+                        registrasiPasien[3][i],
+                        registrasiPasien[4][i]);
+            }
         }
         System.out.println("==========================================================================");
+        System.out.println("");
+        System.out.println("");
     }
 
     static void historyTransaksiBerobat() {
