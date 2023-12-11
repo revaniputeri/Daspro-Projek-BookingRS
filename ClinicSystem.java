@@ -29,7 +29,8 @@ public class ClinicSystem {
             statusKm,
             hargaKamar = 100_000,
             hasil = 0,
-            usiaPasienRujuk[] = new int[30];
+            usiaPasienRujuk[] = new int[30],
+            idOtomatis = 11;
     static char statusbpjs,
             pembayaran,
             status;
@@ -146,30 +147,34 @@ public class ClinicSystem {
     }
 
     static void registrasiPasienBaru() {
-        for (int j = 0; j < registrasiPasien[0].length; j++) {
-            System.out.println("==========================================================================");
-            System.out.print("No Kartu  : ");
-            registrasiPasien[0][j] = sc1.nextLine();
-            System.out.print("Nama      : ");
-            registrasiPasien[1][j] = sc1.nextLine();
-            System.out.print("No KTP    : ");
-            registrasiPasien[2][j] = sc1.nextLine();
-            System.out.print("Alamat    : ");
-            registrasiPasien[3][j] = sc1.nextLine();
-            System.out.print("No. Telp  : ");
-            registrasiPasien[4][j] = sc1.nextLine();
-            System.out.println("--------------------------------------------------");
-            System.out.println("DATA BERHASIL DISIMPAN!");
-            System.out.println("No kartu    : " + registrasiPasien[0][j]);
-            System.out.println("Nama        : " + registrasiPasien[1][j]);
-            System.out.println("No KTP      : " + registrasiPasien[2][j]);
-            System.out.println("Alamat      : " + registrasiPasien[3][j]);
-            System.out.println("No. Telp    : " + registrasiPasien[4][j]);
-            System.out.println(
-                    "==========================================================================");
-            jumlahPasien++;
-            handleAdminTasks();
+        System.out.println("");
+        System.out.println("");
+        System.out.println("KLINIK X - REGISTRASI PASIEN");
+        if (jumlahPasien >= registrasiPasien[0].length) {
+            return;
         }
+        String noKartu = "P" + String.format("%04d", idOtomatis);
+        System.out.println("==========================================================================");
+        System.out.println("No Kartu  : " + noKartu);
+        registrasiPasien[0][jumlahPasien] = noKartu;
+        System.out.print("Nama      : ");
+        registrasiPasien[1][jumlahPasien] = sc1.nextLine();
+        System.out.print("No KTP    : ");
+        registrasiPasien[2][jumlahPasien] = sc1.nextLine();
+        System.out.print("Alamat    : ");
+        registrasiPasien[3][jumlahPasien] = sc1.nextLine();
+        System.out.print("No. Telp  : ");
+        registrasiPasien[4][jumlahPasien] = sc1.nextLine();
+        System.out.println("--------------------------------------------------");
+        System.out.println("DATA BERHASIL DISIMPAN!");
+        System.out.println("No kartu    : " + registrasiPasien[0][jumlahPasien]);
+        System.out.println("Nama        : " + registrasiPasien[1][jumlahPasien]);
+        System.out.println("No KTP      : " + registrasiPasien[2][jumlahPasien]);
+        System.out.println("Alamat      : " + registrasiPasien[3][jumlahPasien]);
+        System.out.println("No. Telp    : " + registrasiPasien[4][jumlahPasien]);
+        System.out.println(
+                "==========================================================================");
+        jumlahPasien++;
     }
 
     static void transaksiBerobat() {
@@ -178,7 +183,8 @@ public class ClinicSystem {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String formattedDate = currentDate.format(formatter);
             transactionDates[jumlahTransaksi] = currentDate;
-            System.out.println("==========================================================================");
+            System.out.println("");
+            System.out.println("");
             System.out.println("KLINIK X - TRANSAKSI BEROBAT");
             System.out.println("==========================================================================");
             System.out.println("ADMIN   : " + inputUsername);
@@ -302,7 +308,8 @@ public class ClinicSystem {
 
     static void transaksiSewaKamar() {
         for (int j = 0; j < transaksiSewaKamar.length; j++) {
-            System.out.println("==========================================================================");
+            System.out.println("");
+            System.out.println("");
             System.out.println("KLINIK X - TRANSAKSI SEWA KAMAR");
             System.out.println("==========================================================================");
             System.out.printf("| %-10s | %-20s |%n", "No Kamar", "Status");
@@ -405,7 +412,8 @@ public class ClinicSystem {
 
     static void transaksiRujukPasien() {
         boolean dataDitemukan = false;
-        System.out.println("==========================================================================");
+        System.out.println("");
+        System.out.println("");
         System.out.println("KLINIK X - TRANSAKSI RUJUK PASIEN");
         System.out.println("==========================================================================");
 
@@ -504,8 +512,9 @@ public class ClinicSystem {
     }
 
     static void daftarKamar() {
-        System.out.println("==========================================================================");
-        System.out.println("KLINIK X - DAFTAR KAMAR");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("KLINIK X - DATA DAFTAR KAMAR");
         System.out.println("==========================================================================");
         // looping untuk menampilkan daftar kamar
         for (int i = 0; i < statusKamar.length; i++) {
@@ -516,19 +525,18 @@ public class ClinicSystem {
     }
 
     static void dataMasterPasien() {
-        System.out.println("==========================================================================");
-        System.out.println("KLINIK X - DATA MASTER PASIEN");
-        System.out.println("==========================================================================");
         System.out.println("");
-        System.out.println("==========================================================================");
-        System.out.println("| No Kartu   | Nama       | No KTP     | Alamat     | No. Telp           |");
-        System.out.println("==========================================================================");
+        System.out.println("");
+        System.out.println("KLINIK X - DATA MASTER PASIEN");
+        System.out.println("========================================================================================================================================");
+        System.out.println("| No Kartu                 | Nama                     | No KTP                   | Alamat                   | No. Telp                 |");
+        System.out.println("========================================================================================================================================");
 
-        for (int i = 0; i <= jumlahPasien; i++) {
-            if (jumlahPasien == 0) {
-                System.out.println("Belum ada data master pasien");
-            } else {
-                System.out.printf("| %-11s| %-11s| %-11s| %-11s| %-11s|\n",
+        if (jumlahPasien == 0) {
+            System.out.println("Belum ada data master pasien");
+        } else {
+            for (int i = 0; i < jumlahPasien; i++) {
+                System.out.printf("| %-25s| %-25s| %-25s| %-25s| %-25s|\n",
                         registrasiPasien[0][i],
                         registrasiPasien[1][i],
                         registrasiPasien[2][i],
@@ -536,7 +544,7 @@ public class ClinicSystem {
                         registrasiPasien[4][i]);
             }
         }
-        System.out.println("==========================================================================");
+        System.out.println("========================================================================================================================================");
         System.out.println("");
         System.out.println("");
     }
@@ -544,8 +552,7 @@ public class ClinicSystem {
     static void historyTransaksiBerobat() {
         System.out.println("");
         System.out.println("");
-        System.out.println("==========================================================================");
-        System.out.println("KLINIK X - RIWAYAT TRANSAKSI BEROBAT");
+        System.out.println("KLINIK X - DATA MASTER PASIEN");
         System.out.println("==========================================================================");
         int j = 0;
         // looping do-while untuk mencetak history transaksi
@@ -595,8 +602,6 @@ public class ClinicSystem {
     static void cetakLaporanHarian() {
         System.out.println("");
         System.out.println("");
-        System.out.println(
-                "================================================================================================================================================================");
         System.out.println("KLINIK X - LAPORAN TRANSAKSI HARIAN");
 
         LocalDate today = LocalDate.now();
@@ -627,8 +632,6 @@ public class ClinicSystem {
     static void cetakLaporanBulanan() {
         System.out.println("");
         System.out.println("");
-        System.out.println(
-                "================================================================================================================================================================");
         System.out.println("KLINIK X - LAPORAN TRANSAKSI BULANAN");
 
         System.out.print("Masukkan bulan (1-12): ");
