@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ClinicSystem {
     static Scanner input = new Scanner(System.in);
+    static Scanner input1 = new Scanner(System.in);
     static Scanner sc = new Scanner(System.in);
     static Scanner sc1 = new Scanner(System.in);
     static String registrasiPasien[][] = new String[5][30],
@@ -16,7 +17,8 @@ public class ClinicSystem {
             daftarDokter[] = { "Dokter Umum", "Dokter Gigi", "Bidan" },
             key = "",
             inputUsername,
-            inputPassword;
+            inputPassword,
+            carikartu;
     static int transaksiPasien2[][] = new int[4][30],
             transaksiSewaKamar2[][] = new int[6][20],
             mainChoice,
@@ -199,12 +201,29 @@ public class ClinicSystem {
                 registrasiPasienBaru();
                 System.out.println("Masukkan No. Kartu pasien");
                 System.out.print("No Kartu                   :");
-                transaksiPasien[0][jumlahTransaksi] = sc1.nextLine();
+                carikartu = input1.nextLine();
+                transaksiPasien[0][jumlahTransaksi] = carikartu;
             } else {
                 System.out.println("Masukkan No. Kartu pasien");
                 System.out.print("No Kartu                   :");
-                transaksiPasien[0][jumlahTransaksi] = sc1.nextLine();
+                carikartu = sc1.nextLine();
+                transaksiPasien[0][jumlahTransaksi] = carikartu;
                 // lanjut ke form transaksi
+            }
+
+            int index = -1;
+            for (int r = 0; r < registrasiPasien[0].length; r++) {
+                if (carikartu.equals(registrasiPasien[0][r])) {
+                    index = r;
+                    break;
+                }
+            }
+
+            if (index != -1) {
+                System.out.println("Nama                       : " + registrasiPasien[1][index]);
+                transaksiPasien[2][jumlahTransaksi] = registrasiPasien[1][index];
+            } else {
+                System.out.println("No. Kartu tidak ditemukan dalam data registrasi.");
             }
 
             // penambahan fitur pasien BPJS
@@ -219,8 +238,7 @@ public class ClinicSystem {
                 transaksiPasien[1][jumlahTransaksi] = sc1.nextLine();
                 transaksiPasien2[3][jumlahTransaksi] = 100;
             }
-            System.out.println("Nama                        : " + registrasiPasien[1][i]);
-            transaksiPasien[2][jumlahTransaksi] = registrasiPasien[1][i];
+            
 
             // usia menggunakan ifelse menentukan biaya konsultasi atau berobat
             System.out.print("Usia                        : ");
@@ -368,50 +386,50 @@ public class ClinicSystem {
                 }
 
                 if (!dataDitemukan) {
-                    System.out.println("Data Pasien tidak ditemukan. Silakan lakukan transaksi berobat terlebih dahulu");
+                    System.out
+                            .println("Data Pasien tidak ditemukan. Silakan lakukan transaksi berobat terlebih dahulu");
                     continue;
                 }
-            
 
-            System.out.println("Apakah pasien memiliki kartu BPJS (0 = tidak, 1 = ya)? ");
-            statusbpjs = input.next().charAt(0);
+                System.out.println("Apakah pasien memiliki kartu BPJS (0 = tidak, 1 = ya)? ");
+                statusbpjs = input.next().charAt(0);
 
-            if (statusbpjs == '0') {
-                transaksiSewaKamar[3][jumlahTransaksiSewa] = "-";
-                transaksiSewaKamar2[5][jumlahTransaksiSewa] = 0;
-            } else {
-                System.out.print("Masukkan No.BPJS pasien     : ");
-                transaksiPasien[1][jumlahTransaksiSewa] = sc1.nextLine();
-                transaksiSewaKamar2[5][jumlahTransaksiSewa] = 100;
+                if (statusbpjs == '0') {
+                    transaksiSewaKamar[3][jumlahTransaksiSewa] = "-";
+                    transaksiSewaKamar2[5][jumlahTransaksiSewa] = 0;
+                } else {
+                    System.out.print("Masukkan No.BPJS pasien     : ");
+                    transaksiPasien[1][jumlahTransaksiSewa] = sc1.nextLine();
+                    transaksiSewaKamar2[5][jumlahTransaksiSewa] = 100;
+                }
+                System.out.print("Masukkan lama menginap (hari) : ");
+                transaksiSewaKamar2[2][jumlahTransaksiSewa] = sc.nextInt();
+                System.out.println("Harga kamar/malam           : " + hargaKamar);
+                transaksiSewaKamar2[3][jumlahTransaksiSewa] = hargaKamar;
+                transaksiSewaKamar2[4][jumlahTransaksiSewa] = (hargaKamar
+                        * transaksiSewaKamar2[2][jumlahTransaksiSewa])
+                        - ((hargaKamar
+                                * transaksiSewaKamar2[2][jumlahTransaksiSewa])
+                                * transaksiSewaKamar2[5][jumlahTransaksiSewa] / 100);
+                System.out.println("Total Sewa Kamar            : "
+                        + transaksiSewaKamar2[4][jumlahTransaksiSewa]);
+
+                System.out.println("==========================================================================");
+                System.out.println("                        Struk Transaksi - Sewa Kamar                      ");
+                System.out.println("==========================================================================");
+                System.out.printf("No Kartu Berobat    : %s%n", transaksiSewaKamar[0][jumlahTransaksiSewa]);
+                System.out.printf("Nama Pasien         : %s%n", transaksiSewaKamar[1][jumlahTransaksiSewa]);
+                System.out.printf("Usia Pasien         : %s%n", transaksiSewaKamar2[1][jumlahTransaksiSewa]);
+                System.out.printf("Keluhan Pasien      : %s%n", transaksiSewaKamar[2][jumlahTransaksiSewa]);
+                System.out.printf("No Kamar yang disewa: %s%n", transaksiSewaKamar2[0][jumlahTransaksiSewa]);
+                System.out.printf("Lama sewa kamar     : %s%n", transaksiSewaKamar2[2][jumlahTransaksiSewa]);
+                System.out.printf("Harga sewa/malam    : Rp. %s%n", transaksiSewaKamar2[3][jumlahTransaksiSewa]);
+                System.out.printf("Total Harga Sewa    : Rp. %s%n", transaksiSewaKamar2[4][jumlahTransaksiSewa]);
+                System.out.println("==========================================================================");
+                jumlahTransaksiSewa++;
+                handleAdminTasks();
             }
-            System.out.print("Masukkan lama menginap (hari) : ");
-            transaksiSewaKamar2[2][jumlahTransaksiSewa] = sc.nextInt();
-            System.out.println("Harga kamar/malam           : " + hargaKamar);
-            transaksiSewaKamar2[3][jumlahTransaksiSewa] = hargaKamar;
-            transaksiSewaKamar2[4][jumlahTransaksiSewa] = (hargaKamar
-                    * transaksiSewaKamar2[2][jumlahTransaksiSewa])
-                    - ((hargaKamar
-                            * transaksiSewaKamar2[2][jumlahTransaksiSewa])
-                            * transaksiSewaKamar2[5][jumlahTransaksiSewa] / 100);
-            System.out.println("Total Sewa Kamar            : "
-                    + transaksiSewaKamar2[4][jumlahTransaksiSewa]);
-
-            System.out.println("==========================================================================");
-            System.out.println("                        Struk Transaksi - Sewa Kamar                      ");
-            System.out.println("==========================================================================");
-            System.out.printf("No Kartu Berobat    : %s%n", transaksiSewaKamar[0][jumlahTransaksiSewa]);
-            System.out.printf("Nama Pasien         : %s%n", transaksiSewaKamar[1][jumlahTransaksiSewa]);
-            System.out.printf("Usia Pasien         : %s%n", transaksiSewaKamar2[1][jumlahTransaksiSewa]);
-            System.out.printf("Keluhan Pasien      : %s%n", transaksiSewaKamar[2][jumlahTransaksiSewa]);
-            System.out.printf("No Kamar yang disewa: %s%n", transaksiSewaKamar2[0][jumlahTransaksiSewa]);
-            System.out.printf("Lama sewa kamar     : %s%n", transaksiSewaKamar2[2][jumlahTransaksiSewa]);
-            System.out.printf("Harga sewa/malam    : Rp. %s%n", transaksiSewaKamar2[3][jumlahTransaksiSewa]);
-            System.out.printf("Total Harga Sewa    : Rp. %s%n", transaksiSewaKamar2[4][jumlahTransaksiSewa]);
-            System.out.println("==========================================================================");
-            jumlahTransaksiSewa++;
-            handleAdminTasks();
         }
-    }
 
     }
 
@@ -616,7 +634,8 @@ public class ClinicSystem {
 
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
+        System.out.println(
+                "================================================================================================================================================================");
         // Print table header
         System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n",
                 "Tanggal Transaksi", "No Kartu Berobat", "No BPJS", "Nama Pasien", "Usia Pasien", "Keluhan Pasien",
