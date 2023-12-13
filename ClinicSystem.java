@@ -140,6 +140,8 @@ public class ClinicSystem {
                     }
                     break;
                 case 9:
+                    System.out.println("Keluar Menu Admin");
+                    main(daftarDokter);
                     break;
                 default:
                     System.out.println("Pilihan tidak valid.");
